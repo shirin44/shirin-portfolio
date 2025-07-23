@@ -1,4 +1,4 @@
-/* index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,22 +8,20 @@ body,
 #root {
   height: 100%;
   margin: 0;
-  scroll-behavior: smooth; /* optional for non-programmatic scroll */
+  padding: 0;
+  overflow: hidden;
 }
 
 .scroll-container {
-  position: relative;
   height: 100vh;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-
-
-
 section {
-  height: 110vh;
+  height: 100vh;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   outline: none;

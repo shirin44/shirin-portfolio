@@ -1,54 +1,33 @@
-import { useEffect, useState } from 'react'
+// components/DotNav.jsx
+import { useState, useEffect } from 'react'
+import useSectionObserver from '../hooks/useSectionObserver'
 import SECTIONS from '../constants/sections'
 import { smoothScroll } from '../helpers/scroll'
-import { setProgrammaticScrolling, isProgrammaticScroll } from '../helpers/sectionController'
+import { setProgrammaticScrolling } from '../helpers/sectionController'
 
 export default function DotNav() {
-  const [active, setActive] = useState('hero')
+  const observedActive = useSectionObserver()
+  const [manualActive, setManualActive] = useState(null)
+
+  const active = manualActive ?? observedActive
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        const visible = entries.find(e => e.isIntersecting)
-        if (visible) {
-          const id = visible.target.id
-          console.log('[DotNav] Section in view:', id)
-
-          // Only update state if this is a user scroll (not dot click)
-          if (!isProgrammaticScroll) {
-            setActive(id)
-          }
-        }
-      },
-      { threshold: 0.5 }
-    )
-
-    SECTIONS.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (el) {
-        console.log('[DotNav] Observing section: #' + id)
-        observer.observe(el)
-      }
-    })
-
-    return () => observer.disconnect()
-  }, [])
+    if (manualActive === observedActive) {
+      setManualActive(null)
+    }
+  }, [observedActive, manualActive])
 
   const handleDotClick = (id) => {
-    console.log('[DotNav] Dot clicked for #' + id)
     const el = document.getElementById(id)
     if (!el) return
 
-    const offset = el.offsetTop
-    console.log('[DotNav] Scrolling to offsetTop:', offset)
-
+    setManualActive(id)
     setProgrammaticScrolling(true)
-    smoothScroll(offset)
+    smoothScroll(el.offsetTop)
 
-    setTimeout(() => {
-      setActive(id)
-      setProgrammaticScrolling(false)
-    }, 900)
+    // setTimeout(() => {
+    //   setProgrammaticScrolling(false)
+    // }, 900)
   }
 
   return (
@@ -57,9 +36,13 @@ export default function DotNav() {
         <button
           key={id}
           onClick={() => handleDotClick(id)}
-          className={`w-4 h-4 rounded-full transition-all duration-300 ${
-            active === id ? 'bg-black scale-125 shadow-lg' : 'bg-gray-400'
-          }`}
+          aria-label={`Go to ${id}`}
+          className={`w-4 h-4 rounded-full border-2 transition-all duration-300
+            ${
+              active === id
+                ? 'bg-indigo-500 border-indigo-500 scale-125 shadow-[0_0_10px_#6366f1]'
+                : 'bg-gray-400 border-transparent hover:bg-gray-600 hover:scale-110'
+            }`}
         />
       ))}
     </div>

@@ -1,19 +1,23 @@
+// helpers/sectionController.js
 import { smoothScroll } from './scroll'
 
 let isScrolling = false
-let lastTime = 0
-export let isProgrammaticScroll = false // <-- shared global flag
+let scrollCooldown = false
+export let isProgrammaticScroll = false
 
 export function setProgrammaticScrolling(value) {
   isProgrammaticScroll = value
 }
 
 export function setupScrollSections(sectionOrder, setActiveSection) {
+  const container = document.querySelector('.scroll-container')
+  if (!container) return
+
   const getCurrentSectionIndex = () => {
-    const scrollY = window.scrollY
+    const scrollY = container.scrollTop
     const index = sectionOrder.findIndex(id => {
       const el = document.getElementById(id)
-      return el && scrollY < el.offsetTop + window.innerHeight / 2
+      return el && scrollY < el.offsetTop + container.clientHeight / 2
     })
     return Math.max(index - 1, 0)
   }
@@ -24,44 +28,46 @@ export function setupScrollSections(sectionOrder, setActiveSection) {
     if (!el || isScrolling) return
 
     isScrolling = true
+    setProgrammaticScrolling(true)
     smoothScroll(el.offsetTop)
 
     setTimeout(() => {
       isScrolling = false
+      setProgrammaticScrolling(false)
       setActiveSection(sectionOrder[index])
     }, 900)
   }
 
   const handleWheel = (e) => {
-    const now = Date.now()
-    if (now - lastTime < 900) return
-    if (isScrolling) return
+    if (scrollCooldown || isScrolling) return
+    if (Math.abs(e.deltaY) < 50) return
     e.preventDefault()
 
-    const dir = e.deltaY > 30 ? 1 : e.deltaY < -30 ? -1 : 0
-    if (dir === 0) return
-
+    const direction = e.deltaY > 0 ? 1 : -1
     const current = getCurrentSectionIndex()
-    scrollToSectionIndex(current + dir)
-    lastTime = now
+    scrollToSectionIndex(current + direction)
+
+    scrollCooldown = true
+    setTimeout(() => (scrollCooldown = false), 1000)
   }
 
   const handleKey = (e) => {
     if (isScrolling) return
-    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+
+    if (['ArrowDown', 'PageDown'].includes(e.key)) {
       e.preventDefault()
       scrollToSectionIndex(getCurrentSectionIndex() + 1)
-    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+    } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
       e.preventDefault()
       scrollToSectionIndex(getCurrentSectionIndex() - 1)
     }
   }
 
-  window.addEventListener('wheel', handleWheel, { passive: false })
+  container.addEventListener('wheel', handleWheel, { passive: false })
   window.addEventListener('keydown', handleKey)
 
   return () => {
-    window.removeEventListener('wheel', handleWheel)
+    container.removeEventListener('wheel', handleWheel)
     window.removeEventListener('keydown', handleKey)
   }
 }
