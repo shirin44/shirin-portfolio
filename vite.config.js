@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/shirin-portfolio/', // ✅ repo name here
+  base: '/shirin-portfolio/', // ✅ GitHub Pages base
   build: {
-    outDir: 'docs', // ✅ output to /docs
+    outDir: 'docs', // ✅ Output to docs/ for GitHub Pages
   },
 })

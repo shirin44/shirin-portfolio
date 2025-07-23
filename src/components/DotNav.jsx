@@ -1,47 +1,67 @@
-// src/components/DotNav.jsx
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from 'react'
+import SECTIONS from '../constants/sections'
+import { smoothScroll } from '../helpers/scroll'
+import { setProgrammaticScrolling, isProgrammaticScroll } from '../helpers/sectionController'
 
-const sections = ["hero", "about", "projects", "contact"];
-
-const DotNav = () => {
-  const [active, setActive] = useState("hero");
+export default function DotNav() {
+  const [active, setActive] = useState('hero')
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + window.innerHeight / 2;
+    const observer = new IntersectionObserver(
+      entries => {
+        const visible = entries.find(e => e.isIntersecting)
+        if (visible) {
+          const id = visible.target.id
+          console.log('[DotNav] Section in view:', id)
 
-      for (let sec of sections) {
-        const element = document.getElementById(sec);
-        if (element && element.offsetTop <= scrollPos) {
-          setActive(sec);
+          // Only update state if this is a user scroll (not dot click)
+          if (!isProgrammaticScroll) {
+            setActive(id)
+          }
         }
-      }
-    };
+      },
+      { threshold: 0.5 }
+    )
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    SECTIONS.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) {
+        console.log('[DotNav] Observing section: #' + id)
+        observer.observe(el)
+      }
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   const handleDotClick = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+    console.log('[DotNav] Dot clicked for #' + id)
+    const el = document.getElementById(id)
+    if (!el) return
+
+    const offset = el.offsetTop
+    console.log('[DotNav] Scrolling to offsetTop:', offset)
+
+    setProgrammaticScrolling(true)
+    smoothScroll(offset)
+
+    setTimeout(() => {
+      setActive(id)
+      setProgrammaticScrolling(false)
+    }, 900)
+  }
 
   return (
-    <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-5">
-      {sections.map((sec) => (
+    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4">
+      {SECTIONS.map(({ id }) => (
         <button
-          key={sec}
-          onClick={() => handleDotClick(sec)}
-          className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${
-            active === sec
-              ? "bg-indigo-600 border-indigo-600 scale-125"
-              : "bg-transparent border-gray-400 hover:border-indigo-400"
+          key={id}
+          onClick={() => handleDotClick(id)}
+          className={`w-4 h-4 rounded-full transition-all duration-300 ${
+            active === id ? 'bg-black scale-125 shadow-lg' : 'bg-gray-400'
           }`}
-          aria-label={`Scroll to ${sec}`}
-        ></button>
+        />
       ))}
     </div>
-  );
-};
-
-export default DotNav;
+  )
+}
