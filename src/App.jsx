@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import DotNav from "./components/DotNav";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Section Wrappers
+import SectionWrapper from "./components/SectionWrapper";
 
+// Raw Sections
+import Hero from "./sections/Hero";
+import About from "./sections/About";
+import Projects from "./sections/Projects";
+import Contact from "./sections/Contact";
+
+// Wrapped Sections with Animation + IDs
+const WrappedHero = SectionWrapper(Hero, "hero");
+const WrappedAbout = SectionWrapper(About, "about");
+const WrappedProjects = SectionWrapper(Projects, "projects");
+const WrappedContact = SectionWrapper(Contact, "contact");
+
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="relative">
+      <DotNav />
 
-export default App
+      <WrappedHero />
+      <WrappedAbout />
+      <WrappedProjects />
+      <WrappedContact />
+    </div>
+  );
+};
+
+export default App;
