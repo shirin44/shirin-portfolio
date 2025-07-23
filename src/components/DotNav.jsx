@@ -1,39 +1,44 @@
+// src/components/DotNav.jsx
 import React, { useState, useEffect } from "react";
 
 const sections = ["hero", "about", "projects", "contact"];
 
 const DotNav = () => {
-  const [activeSection, setActiveSection] = useState("hero");
+  const [active, setActive] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight / 2;
-      let current = "hero";
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el && el.offsetTop <= scrollPos) {
-          current = section;
+
+      for (let sec of sections) {
+        const element = document.getElementById(sec);
+        if (element && element.offsetTop <= scrollPos) {
+          setActive(sec);
         }
       }
-      setActiveSection(current);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleDotClick = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="fixed left-4 top-1/2 transform -translate-y-1/2 space-y-3 z-50">
-      {sections.map((section) => (
-        <a
-          key={section}
-          href={`#${section}`}
-          className={`block w-3 h-3 rounded-full border-2 transition-all ${
-            activeSection === section
+    <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-5">
+      {sections.map((sec) => (
+        <button
+          key={sec}
+          onClick={() => handleDotClick(sec)}
+          className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${
+            active === sec
               ? "bg-indigo-600 border-indigo-600 scale-125"
-              : "border-gray-400"
+              : "bg-transparent border-gray-400 hover:border-indigo-400"
           }`}
-        />
+          aria-label={`Scroll to ${sec}`}
+        ></button>
       ))}
     </div>
   );
