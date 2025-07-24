@@ -6,37 +6,37 @@ const certifications = [
     {
       title: "Fundamentals of UI/UX Design",
       provider: "Coursera",
-      image: "public/certificates/uiux.png",
+      image: "certificates/uiux.png",
       link: "https://coursera.org/share/9758338ee57a40b1036c1693135d2591",
     },
     {
       title: "Designing for User Experience",
       provider: "Coursera",
-      image: "public/certificates/ux.png",
+      image: "certificates/ux.png",
       link: "https://coursera.org/share/1d41accea5e70a69552a8a94dc76b4ee",
     },
     {
       title: "Excel VBA and Macros",
       provider: "Coursera",
-      image: "public/certificates/vba.png",
+      image: "certificates/vba.png",
       link: "https://coursera.org/share/085bb0f7c0c5540427e49e030021342f",
     },
     {
       title: "Supervised Machine Learning",
       provider: "DeepLearning.AI",
-      image: "public/certificates/ml.png",
+      image: "certificates/ml.png",
       link: "https://coursera.org/share/ac5a28d6ebc8747eaeb1b62606fba1e7",
     },
     {
       title: "IoT & Embedded Systems",
       provider: "UC Irvine",
-      image: "public/certificates/iot.png",
+      image: "certificates/iot.png",
       link: "https://coursera.org/share/a78f8cb0ff195242c0facab9fe32c8bd",
     },
     {
       title: "Generative AI for Everyone",
       provider: "DeepLearning.AI",
-      image: "public/certificates/genai.png",
+      image: "certificates/genai.png",
       link: "https://coursera.org/share/a70eb1c90753849f1ec9c521b273ce21",
     },
   ];
