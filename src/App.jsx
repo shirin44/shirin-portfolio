@@ -6,6 +6,7 @@ import Projects from './sections/Projects'
 import Contact from './sections/Contact'
 import Experience from './sections/Experience'
 import DotNav from './components/DotNav'
+import Skills from './sections/Skills'
 import { setupScrollSections } from './helpers/sectionController'
 import SECTIONS from './constants/sections'
 import './index.css'
@@ -25,6 +26,7 @@ function App() {
       <Hero />
       <About />
       <Experience/>
+      <Skills/>
       <Projects />
       <Contact />
     </main>

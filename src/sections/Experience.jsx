@@ -67,11 +67,6 @@ export default function Experience() {
     const checkPhone = () => {
       const phone = window.innerWidth <= 768;
       setIsPhone(phone);
-      if (phone) {
-        console.log("✅ We are in phone mode");
-      } else {
-        console.log("🖥️ Desktop mode");
-      }
     };
     checkPhone();
     window.addEventListener("resize", checkPhone);
@@ -117,7 +112,7 @@ export default function Experience() {
       ].map((job, i) => (
         <motion.div
           key={i}
-          className="bg-white rounded-3xl shadow-xl p-6 relative overflow-hidden border-l-4 border-[#B23A48] pl-8 mb-8"
+          className="w-full max-w-[90vw] bg-white rounded-3xl shadow-xl p-6 relative overflow-hidden border-l-4 border-[#B23A48] pl-8 mb-8"
           custom={i}
           initial="hidden"
           whileInView="visible"
@@ -128,7 +123,6 @@ export default function Experience() {
           <div className="absolute top-2 right-4 text-xs bg-[#FAD2D1] text-[#B23A48] px-2 py-1 rounded-full font-semibold shadow flex items-center gap-1">
             {job.icon} <span>{job.tag}</span>
           </div>
-
           <h4 className="text-xl font-bold">
             {job.title}
             <span className="block text-sm font-medium text-[#5F4B44]">
@@ -157,7 +151,7 @@ export default function Experience() {
       </motion.h2>
 
       <motion.div
-        className="mb-10 bg-white rounded-3xl shadow-xl p-6 border-l-4 border-[#B23A48]"
+        className="w-full max-w-[90vw] mb-10 bg-white rounded-3xl shadow-xl p-6 border-l-4 border-[#B23A48]"
         variants={fadeSlideUp}
         initial="hidden"
         whileInView="visible"
@@ -197,7 +191,7 @@ export default function Experience() {
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.04 }}
-              className="min-w-[220px] bg-white rounded-2xl border border-[#E4DCCF] overflow-hidden snap-center transition-all duration-300 hover:shadow-2xl shadow-lg"
+              className="min-w-[220px] max-w-[90vw] bg-white rounded-2xl border border-[#E4DCCF] overflow-hidden snap-center transition-all duration-300 hover:shadow-2xl shadow-lg"
             >
               <div className="relative w-full h-32 overflow-hidden">
                 <img
@@ -233,7 +227,7 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FAF3E0] to-[#F4E2D8] text-[#322828] px-6 py-24 flex flex-col items-center overflow-hidden"
+      className="relative min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FAF3E0] to-[#F4E2D8] text-[#322828] px-4 py-24 flex flex-col items-center overflow-x-hidden"
     >
       <div className="absolute -top-20 -left-20 w-96 h-96 bg-[#B23A48]/30 blur-3xl rounded-full z-0 animate-pulse" />
       <div className="absolute bottom-0 -right-20 w-96 h-96 bg-[#5F4B44]/30 blur-2xl rounded-full z-0 animate-pulse" />
@@ -266,7 +260,7 @@ export default function Experience() {
             {activeTab === "experience" ? renderExperience() : renderEducation()}
           </>
         ) : (
-          <div className="grid grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {renderExperience()}
             {renderEducation()}
           </div>
