@@ -200,7 +200,7 @@ export default function Experience() {
                       className="w-full h-full object-cover hover:scale-110 transition duration-500"
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "public/certificates/placeholder.png";
+                        e.target.src = "certificates/placeholder.png";
 
                       }}
                     />
