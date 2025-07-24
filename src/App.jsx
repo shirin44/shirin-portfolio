@@ -8,6 +8,7 @@ import DotNav from './components/DotNav'
 import { setupScrollSections } from './helpers/sectionController'
 import SECTIONS from './constants/sections'
 import './index.css'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero')
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <main className="scroll-container relative">
+       <Toaster position="top-center" />
       <DotNav active={activeSection} />
       <Hero />
       <About />
