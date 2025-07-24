@@ -3,43 +3,44 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Award, Target } from "lucide-react";
 
 const certifications = [
-  {
-    title: "Fundamentals of UI/UX Design",
-    provider: "Coursera",
-    image: "src/assets/certificates/uiux.png",
-    link: "https://coursera.org/share/9758338ee57a40b1036c1693135d2591",
-  },
-  {
-    title: "Designing for User Experience",
-    provider: "Coursera",
-    image: "src/assets/certificates/ux.png",
-    link: "https://coursera.org/share/1d41accea5e70a69552a8a94dc76b4ee",
-  },
-  {
-    title: "Excel VBA and Macros",
-    provider: "Coursera",
-    image: "src/assets/certificates/vba.png",
-    link: "https://coursera.org/share/085bb0f7c0c5540427e49e030021342f",
-  },
-  {
-    title: "Supervised Machine Learning",
-    provider: "DeepLearning.AI",
-    image: "src/assets/certificates/ml.png",
-    link: "https://coursera.org/share/ac5a28d6ebc8747eaeb1b62606fba1e7",
-  },
-  {
-    title: "IoT & Embedded Systems",
-    provider: "UC Irvine",
-    image: "src/assets/certificates/iot.png",
-    link: "https://coursera.org/share/a78f8cb0ff195242c0facab9fe32c8bd",
-  },
-  {
-    title: "Generative AI for Everyone",
-    provider: "DeepLearning.AI",
-    image: "src/assets/certificates/genai.png",
-    link: "https://coursera.org/share/a70eb1c90753849f1ec9c521b273ce21",
-  },
-];
+    {
+      title: "Fundamentals of UI/UX Design",
+      provider: "Coursera",
+      image: "public/certificates/uiux.png",
+      link: "https://coursera.org/share/9758338ee57a40b1036c1693135d2591",
+    },
+    {
+      title: "Designing for User Experience",
+      provider: "Coursera",
+      image: "public/certificates/ux.png",
+      link: "https://coursera.org/share/1d41accea5e70a69552a8a94dc76b4ee",
+    },
+    {
+      title: "Excel VBA and Macros",
+      provider: "Coursera",
+      image: "public/certificates/vba.png",
+      link: "https://coursera.org/share/085bb0f7c0c5540427e49e030021342f",
+    },
+    {
+      title: "Supervised Machine Learning",
+      provider: "DeepLearning.AI",
+      image: "public/certificates/ml.png",
+      link: "https://coursera.org/share/ac5a28d6ebc8747eaeb1b62606fba1e7",
+    },
+    {
+      title: "IoT & Embedded Systems",
+      provider: "UC Irvine",
+      image: "public/certificates/iot.png",
+      link: "https://coursera.org/share/a78f8cb0ff195242c0facab9fe32c8bd",
+    },
+    {
+      title: "Generative AI for Everyone",
+      provider: "DeepLearning.AI",
+      image: "public/certificates/genai.png",
+      link: "https://coursera.org/share/a70eb1c90753849f1ec9c521b273ce21",
+    },
+  ];
+  
 
 const fadeSlideUp = {
   hidden: { opacity: 0, y: 60 },
@@ -199,8 +200,8 @@ export default function Experience() {
                       className="w-full h-full object-cover hover:scale-110 transition duration-500"
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src =
-                          "https://community.softr.io/uploads/db9110/original/2X/7/74e6e7e382d0ff5d7773ca9a87e6f6f8817a68a6.jpeg";
+                        e.target.src = "public/certificates/placeholder.png";
+
                       }}
                     />
                   </div>
