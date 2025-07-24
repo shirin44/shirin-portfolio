@@ -3,12 +3,7 @@ import emailjs from '@emailjs/browser'
 import toast from 'react-hot-toast'
 
 export default function Contact() {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
@@ -26,14 +21,14 @@ export default function Contact() {
     setLoading(true)
     try {
       await emailjs.send(
-        'service_rkz56ng',      
-        'template_duwhh3o',     
+        'service_rkz56ng',
+        'template_duwhh3o',
         {
           name: form.name,
           email: form.email,
           message: form.message,
         },
-        '8ZRDaEyS2_t72DkFZ' 
+        '8ZRDaEyS2_t72DkFZ'
       )
       toast.success('Message sent successfully!')
       setForm({ name: '', email: '', message: '' })
@@ -49,19 +44,19 @@ export default function Contact() {
     <section
       id="contact"
       tabIndex={-1}
-      className="h-screen snap-start focus:outline-none flex items-center justify-center px-4 md:px-0 bg-[#FAF3E0] text-[#322828] animate-fadeIn"
+      className="relative min-h-screen snap-start focus:outline-none flex items-center justify-center px-6 py-24 bg-gradient-to-br from-[#FFF8F0] via-[#FAF3E0] to-[#F4E2D8] text-[#322828] overflow-hidden"
     >
-      <div className="max-w-3xl w-full py-24 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#B23A48] mb-2 animate-fade-in">
-          Send me a message!
-        </h2>
-        <p className="text-lg text-[#5F4B44] mb-12 animate-fade-in delay-200">
-          Got a question or proposal, or just want to say hello? Go ahead.
-        </p>
+      {/* Decorative Blobs */}
+      <div className="absolute -top-20 -left-20 w-96 h-96 bg-[#B23A48]/30 blur-3xl rounded-full z-0 animate-pulse" />
+      <div className="absolute bottom-0 -right-20 w-96 h-96 bg-[#5F4B44]/30 blur-2xl rounded-full z-0 animate-pulse" />
+
+      <div className="max-w-3xl w-full py-12 text-center relative z-10">
+        <h2 className="text-4xl md:text-5xl font-bold text-[#B23A48] mb-2">Send me a message!</h2>
+        <p className="text-lg text-[#5F4B44] mb-12">Got a question or proposal, or just want to say hello? Go ahead.</p>
 
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left animate-fade-in delay-300"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left"
         >
           <div>
             <label className="block text-sm font-medium text-[#5F4B44] mb-1">Your Name</label>
@@ -71,7 +66,7 @@ export default function Contact() {
               value={form.name}
               onChange={handleChange}
               placeholder="Enter your name"
-              className="w-full bg-transparent border-b border-[#CBD5C0] focus:outline-none focus:border-[#B23A48] py-2 text-[#322828] placeholder:text-[#9A8D85] transition-all duration-300"
+              className="w-full bg-white border border-[#CBD5C0] focus:outline-none focus:border-[#B23A48] py-3 px-4 rounded-md shadow-sm placeholder:text-[#9A8D85] transition"
             />
           </div>
 
@@ -83,7 +78,7 @@ export default function Contact() {
               value={form.email}
               onChange={handleChange}
               placeholder="Enter your email address"
-              className="w-full bg-transparent border-b border-[#CBD5C0] focus:outline-none focus:border-[#B23A48] py-2 text-[#322828] placeholder:text-[#9A8D85] transition-all duration-300"
+              className="w-full bg-white border border-[#CBD5C0] focus:outline-none focus:border-[#B23A48] py-3 px-4 rounded-md shadow-sm placeholder:text-[#9A8D85] transition"
             />
           </div>
 
@@ -93,9 +88,9 @@ export default function Contact() {
               name="message"
               value={form.message}
               onChange={handleChange}
-              rows={3}
+              rows={4}
               placeholder="Hi, I think we need a design system for our products..."
-              className="w-full bg-transparent border-b border-[#CBD5C0] focus:outline-none focus:border-[#B23A48] py-2 resize-none text-[#322828] placeholder:text-[#9A8D85] transition-all duration-300"
+              className="w-full bg-white border border-[#CBD5C0] focus:outline-none focus:border-[#B23A48] py-3 px-4 rounded-md shadow-sm resize-none placeholder:text-[#9A8D85] transition"
             />
           </div>
 
@@ -103,10 +98,9 @@ export default function Contact() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-12 inline-flex items-center px-6 py-3 border border-[#B23A48] text-[#B23A48] rounded-md text-sm font-semibold tracking-wide hover:bg-[#F7E8A4]/30 transition-all duration-300"
+              className="mt-8 inline-flex items-center px-6 py-3 bg-[#B23A48] text-white rounded-md text-sm font-semibold tracking-wide hover:bg-[#9B2D3B] transition-all duration-300"
             >
-              {loading ? 'Sending...' : 'SHOOT'}
-              <span className="ml-3">→</span>
+              {loading ? 'Sending...' : 'Send Message'}
             </button>
           </div>
         </form>

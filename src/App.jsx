@@ -4,6 +4,7 @@ import Hero from './sections/Hero'
 import About from './sections/About'
 import Projects from './sections/Projects'
 import Contact from './sections/Contact'
+import Experience from './sections/Experience'
 import DotNav from './components/DotNav'
 import { setupScrollSections } from './helpers/sectionController'
 import SECTIONS from './constants/sections'
@@ -23,6 +24,7 @@ function App() {
       <DotNav active={activeSection} />
       <Hero />
       <About />
+      <Experience/>
       <Projects />
       <Contact />
     </main>

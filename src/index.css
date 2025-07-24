@@ -26,3 +26,14 @@ section {
   scroll-snap-stop: always;
   outline: none;
 }
+
+/* Optional glow effect */
+.hover\:glow:hover {
+  box-shadow: 0 0 12px rgba(178, 58, 72, 0.4), 0 0 6px rgba(178, 58, 72, 0.2);
+}
+
+/* Optional texture background */
+.bg-texture {
+  background: url('/bg-texture.svg');
+  opacity: 0.1;
+}
