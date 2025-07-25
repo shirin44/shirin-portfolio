@@ -10,7 +10,6 @@ export default {
         'fade-in': 'fadeIn 0.6s ease-out both',
         
           'pulse-slow': 'pulse 8s infinite',
-    
       },
       keyframes: {
         fadeIn: {

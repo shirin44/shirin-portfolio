@@ -1,53 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  FaReact, FaNodeJs, FaPython, FaFigma, FaGitAlt, FaDocker, FaJava, FaVial
-} from 'react-icons/fa'
-import {
-  SiTailwindcss, SiMongodb, SiMysql, SiVite, SiRedux, SiExpress,
-  SiPostman, SiJira, SiVercel, SiCanva, SiTypescript, SiJavascript,
-  SiTensorflow, SiScikitlearn, SiOpencv
-} from 'react-icons/si'
-import { TbBrandNextjs } from 'react-icons/tb'
-
-const skills = {
-  Programming: [
-    { name: 'Python', icon: <FaPython /> },
-    { name: 'JavaScript', icon: <SiJavascript /> },
-    { name: 'TypeScript', icon: <SiTypescript /> },
-    { name: 'Java', icon: <FaJava /> },
-  ],
-  Frontend: [
-    { name: 'React', icon: <FaReact /> },
-    { name: 'Next.js', icon: <TbBrandNextjs /> },
-    { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
-    { name: 'Redux', icon: <SiRedux /> },
-  ],
-  Backend: [
-    { name: 'Node.js', icon: <FaNodeJs /> },
-    { name: 'Express.js', icon: <SiExpress /> },
-    { name: 'MongoDB', icon: <SiMongodb /> },
-    { name: 'MySQL', icon: <SiMysql /> },
-  ],
-  Tools: [
-    { name: 'Git', icon: <FaGitAlt /> },
-    { name: 'Docker', icon: <FaDocker /> },
-    { name: 'Postman', icon: <SiPostman /> },
-    { name: 'Jira', icon: <SiJira /> },
-    { name: 'Vercel', icon: <SiVercel /> },
-    { name: 'Vite', icon: <SiVite /> },
-  ],
-  AI_ML: [
-    { name: 'TensorFlow', icon: <SiTensorflow /> },
-    { name: 'Scikit-learn', icon: <SiScikitlearn /> },
-    { name: 'OpenCV', icon: <SiOpencv /> },
-  ],
-  Creative: [
-    { name: 'Figma', icon: <FaFigma /> },
-    { name: 'Canva', icon: <SiCanva /> },
-    { name: 'Excel VBA', icon: <FaVial /> },
-  ]
-}
+import { skills } from '../constants/skillslist'
 
 const categoryNames = Object.keys(skills)
 
@@ -57,26 +10,28 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative h-screen w-screen bg-[#FAF3E0] text-[#322828] overflow-hidden flex flex-col justify-center items-center px-4"
-    >
-      {/* Parallax floating blobs */}
+      className="relative snap-start h-screen  w-full bg-[#FAF3E0] text-[#322828] overflow-hidden flex flex-col justify-center items-center px-4"
+      tabIndex={-1} >
+      {/* Blobs */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-10 left-10 w-96 h-96 bg-[#FFF3C7] rounded-full blur-[120px] opacity-40 animate-pulse-slow" />
-        <div className="absolute bottom-10 right-20 w-80 h-80 bg-[#FFE0DC] rounded-full blur-[100px] opacity-50 animate-pulse-slow" />
-        <div className="absolute top-[40%] left-[45%] w-64 h-64 bg-[#B23A48] rounded-full blur-[160px] opacity-20" />
+        <div className="absolute top-16 left-10 w-[500px] h-[500px] bg-[#FFF3C7] rounded-full blur-[160px] opacity-50 animate-pulse-slow" />
+        <div className="absolute bottom-10 right-20 w-[400px] h-[400px] bg-[#FFE0DC] rounded-full blur-[130px] opacity-60 animate-pulse-slow" />
+        <div className="absolute top-[35%] left-[40%] w-[300px] h-[300px] bg-[#B23A48] rounded-full blur-[160px] opacity-25" />
       </div>
 
-      <h2 className="text-4xl md:text-5xl font-bold text-[#B23A48] mb-6 z-10">Skills</h2>
+      <h2 className="text-5xl md:text-6xl font-extrabold text-[#B23A48] mb-10 z-10 text-center">
+        Skills
+      </h2>
 
       {/* Category Buttons */}
-      <div className="flex flex-wrap justify-center gap-3 mb-6 z-10">
+      <div className="flex flex-wrap justify-center gap-4 mb-10 z-10">
         {categoryNames.map(category => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-2 rounded-full border border-[#B23A48] text-sm font-medium transition-colors ${
+            className={`px-5 py-3 rounded-full border border-[#B23A48] text-base md:text-lg font-semibold transition-all ${
               selectedCategory === category
-                ? 'bg-[#B23A48] text-white shadow-md'
+                ? 'bg-[#B23A48] text-white shadow-lg'
                 : 'bg-transparent text-[#B23A48] hover:bg-[#b23a48]/10'
             }`}
           >
@@ -85,31 +40,31 @@ export default function Skills() {
         ))}
       </div>
 
-      {/* Skills */}
-      <div className="w-full max-w-6xl px-4 overflow-x-auto scroll-smooth cursor-grab z-10">
+      {/* Skill Cards */}
+      <div className="w-full max-w-7xl px-4 overflow-x-auto scroll-smooth cursor-grab z-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedCategory}
-            initial={{ opacity: 0, y: 30, scale: 0.96 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -30, scale: 0.96 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className="flex gap-8 justify-center items-center min-w-max py-6"
+            exit={{ opacity: 0, y: -30, scale: 0.95 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className="flex gap-6 md:gap-10 justify-center items-center min-w-max py-8"
           >
             {skills[selectedCategory].map((skill, i) => (
               <motion.div
                 key={i}
                 whileHover={{
-                  scale: 1.12,
-                  boxShadow: '0 0 25px rgba(178, 58, 72, 0.3)',
+                  scale: 1.15,
+                  boxShadow: '0 0 40px rgba(178, 58, 72, 0.35)',
                 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="min-w-[160px] h-[180px] bg-white rounded-3xl border border-[#e4dccf] shadow-[0_4px_10px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col justify-center items-center gap-3 p-4"
+                transition={{ type: 'spring', stiffness: 180, damping: 14 }}
+                className="min-w-[180px] h-[200px] md:min-w-[220px] md:h-[240px] bg-white rounded-3xl border border-[#e4dccf] shadow-xl transition-all duration-300 flex flex-col justify-center items-center gap-4 p-6 md:p-8"
               >
-                <div className="w-16 h-16 text-5xl flex items-center justify-center text-[#B23A48]">
+                <div className="text-6xl md:text-7xl text-[#B23A48]">
                   {skill.icon}
                 </div>
-                <div className="text-sm font-semibold text-[#5F4B44] text-center leading-tight">
+                <div className="text-base md:text-lg font-bold text-[#5F4B44] text-center leading-tight">
                   {skill.name}
                 </div>
               </motion.div>

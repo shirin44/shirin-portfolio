@@ -227,8 +227,8 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FAF3E0] to-[#F4E2D8] text-[#322828] px-4 py-24 flex flex-col items-center overflow-x-hidden"
-    >
+      className="relative snap-start h-screen  bg-gradient-to-br from-[#FFF8F0] via-[#FAF3E0] to-[#F4E2D8] text-[#322828] px-4 py-24 flex flex-col items-center overflow-x-hidden"
+      tabIndex={-1}>
       <div className="absolute -top-20 -left-20 w-96 h-96 bg-[#B23A48]/30 blur-3xl rounded-full z-0 animate-pulse" />
       <div className="absolute bottom-0 -right-20 w-96 h-96 bg-[#5F4B44]/30 blur-2xl rounded-full z-0 animate-pulse" />
 
