@@ -32,19 +32,21 @@ export default function DotNav() {
 
   return (
     <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4">
-      {SECTIONS.map(({ id }) => (
-        <button
-          key={id}
-          onClick={() => handleDotClick(id)}
-          aria-label={`Go to ${id}`}
-          className={`w-4 h-4 rounded-full border-2 transition-all duration-300
-            ${
-              active === id
-                ? 'bg-indigo-500 border-indigo-500 scale-125 shadow-[0_0_10px_#6366f1]'
-                : 'bg-gray-400 border-transparent hover:bg-gray-600 hover:scale-110'
-            }`}
-        />
-      ))}
-    </div>
+    {SECTIONS.map(({ id }) => (
+      <button
+        key={id}
+        onClick={() => handleDotClick(id)}
+        aria-label={`Go to ${id}`}
+        className={`w-4 h-4 rounded-full border-2 transition-all duration-300
+          ${
+            active === id
+              ? 'bg-[#B23A48] border-[#B23A48] scale-125 shadow-[0_0_8px_#B23A48]'
+              : 'bg-[#E6D6D0] border-transparent hover:bg-[#DBB06B] hover:scale-110'
+          }`}
+      />
+    ))}
+  </div>
+  
+
   )
 }
