@@ -69,13 +69,15 @@ const Hero = () => {
             View Projects
           </button>
           <a
-            href="/ShirinShujaa_CV.pdf"
+            href="/shirin-portfolio/ShirinShujaa_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            download
             className="w-full md:w-auto px-6 py-3 bg-[#FAD2D1] text-[#B23A48] text-base md:text-lg font-semibold rounded-full shadow-md hover:brightness-110 transition"
           >
             Download Resume
           </a>
+
           <button
             onClick={(e) => handleSmoothScroll(e, "#contact")}
             className="w-full md:w-auto px-6 py-3 border-2 border-[#B23A48] text-[#B23A48] text-base md:text-lg font-semibold rounded-full shadow-sm hover:bg-[#B23A48] hover:text-white transition"
