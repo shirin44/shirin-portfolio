@@ -10,7 +10,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative snap-start h-screen  w-full bg-[#FAF3E0] text-[#322828] overflow-hidden flex flex-col justify-center items-center px-4"
+      className=" snap-start h-screen  w-full bg-[#FAF3E0] text-[#322828] overflow-hidden flex flex-col justify-center  relative items-center px-4  animate-fadeIn "
       tabIndex={-1} >
       {/* Blobs */}
       <div className="absolute inset-0 -z-10">

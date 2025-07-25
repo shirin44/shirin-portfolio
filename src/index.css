@@ -37,3 +37,20 @@ section {
   background: url('/bg-texture.svg');
   opacity: 0.1;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+@keyframes bounce-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+.animate-bounce-x {
+  animation: bounce-x 1s infinite;
+}
