@@ -1,270 +1,253 @@
-import React, { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Award, Target } from "lucide-react";
+// src/sections/Experience.jsx
+import React, { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, ExternalLink } from "lucide-react";
 
-const certifications = [
-  {
-    title: "Fundamentals of UI/UX Design",
-    provider: "Coursera",
-    image: "certificates/uiux.png",
-    link: "https://coursera.org/share/9758338ee57a40b1036c1693135d2591",
-  },
-  {
-    title: "Designing for User Experience",
-    provider: "Coursera",
-    image: "certificates/ux.png",
-    link: "https://coursera.org/share/1d41accea5e70a69552a8a94dc76b4ee",
-  },
-  {
-    title: "Excel VBA and Macros",
-    provider: "Coursera",
-    image: "certificates/vba.png",
-    link: "https://coursera.org/share/085bb0f7c0c5540427e49e030021342f",
-  },
-  {
-    title: "Supervised Machine Learning",
-    provider: "DeepLearning.AI",
-    image: "certificates/ml.png",
-    link: "https://coursera.org/share/ac5a28d6ebc8747eaeb1b62606fba1e7",
-  },
-  {
-    title: "IoT & Embedded Systems",
-    provider: "UC Irvine",
-    image: "certificates/iot.png",
-    link: "https://coursera.org/share/a78f8cb0ff195242c0facab9fe32c8bd",
-  },
-  {
-    title: "Generative AI for Everyone",
-    provider: "DeepLearning.AI",
-    image: "certificates/genai.png",
-    link: "https://coursera.org/share/a70eb1c90753849f1ec9c521b273ce21",
-  },
-];
+import {
+  experienceData,
+  educationData,
+  certifications,
+} from "../data/experienceData";
 
 const fadeSlideUp = {
-  hidden: { opacity: 0, y: 60 },
+  hidden: { opacity: 0, y: 24 },
   visible: (i = 1) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
+    transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" },
   }),
 };
 
 export default function Experience() {
-  const scrollRef = useRef(null);
-  const [isPhone, setIsPhone] = useState(false);
-  const [activeTab, setActiveTab] = useState("experience");
+  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [showAllCerts, setShowAllCerts] = useState(false);
 
-  const scroll = (dir) => {
-    if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({
-      left: dir === "left" ? -300 : 300,
-      behavior: "smooth",
-    });
-  };
-
-  useEffect(() => {
-    const checkPhone = () => {
-      const phone = window.innerWidth <= 768;
-      setIsPhone(phone);
-    };
-    checkPhone();
-    window.addEventListener("resize", checkPhone);
-    return () => window.removeEventListener("resize", checkPhone);
-  }, []);
-
-  const renderExperience = () => (
-    <div>
-      <motion.h2
-        className="text-4xl md:text-5xl font-extrabold text-[#B23A48] mb-12"
-        initial="hidden"
-        whileInView="visible"
-        variants={fadeSlideUp}
-      >
-        Experience
-      </motion.h2>
-
-      {[
-        {
-          title: "Wareflex – Frontend Developer Intern",
-          date: "Jan–May 2024",
-          icon: <Award className="w-4 h-4 inline mr-1 text-[#B23A48]" />,
-          tag: "Internship",
-          bullets: [
-            "Developed a responsive landing page using React and Tailwind",
-            "Reviewed and optimized 100+ PRs following headless architecture",
-            "Collaborated on real-time API integration with backend team",
-            "Received a recommendation letter for outstanding contributions",
-          ],
-        },
-        {
-          title: "Intel (Capstone Project) – Automation Engineer",
-          date: "Mar–Sep 2025",
-          icon: <Target className="w-4 h-4 inline mr-1 text-[#B23A48]" />,
-          tag: "Capstone",
-          bullets: [
-            "Led frontend and VBA integration for custom report automation",
-            "Built modules for file uploads, email scheduling, and SharePoint archiving",
-            "Developed a failure recovery feature and user role management",
-            "Delivered a 4-hour task in under 15 minutes",
-          ],
-        },
-      ].map((job, i) => (
-        <motion.div
-          key={i}
-          className="w-full max-w-[90vw] bg-white rounded-3xl shadow-xl p-6 relative overflow-hidden border-l-4 border-[#B23A48] pl-8 mb-8"
-          custom={i}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeSlideUp}
-        >
-          <div className="absolute -left-4 top-6 w-3 h-3 bg-[#B23A48] rounded-full shadow-lg" />
-          <div className="absolute top-2 right-4 text-xs bg-[#FAD2D1] text-[#B23A48] px-2 py-1 rounded-full font-semibold shadow flex items-center gap-1">
-            {job.icon} <span>{job.tag}</span>
-          </div>
-          <h4 className="text-xl font-bold">
-            {job.title}
-            <span className="block text-sm font-medium text-[#5F4B44]">
-              {job.date}
-            </span>
-          </h4>
-          <ul className="list-disc list-inside text-[#5F4B44] mt-3 space-y-1">
-            {job.bullets.map((pt, j) => (
-              <li key={j}>{pt}</li>
-            ))}
-          </ul>
-        </motion.div>
-      ))}
-    </div>
-  );
-
-  const renderEducation = () => (
-    <div>
-      <motion.h2
-        className="text-4xl md:text-5xl font-extrabold text-[#B23A48] mb-12"
-        initial="hidden"
-        whileInView="visible"
-        variants={fadeSlideUp}
-      >
-        Education
-      </motion.h2>
-
-      <motion.div
-        className="w-full max-w-[90vw] mb-10 bg-white rounded-3xl shadow-xl p-6 border-l-4 border-[#B23A48]"
-        variants={fadeSlideUp}
-        initial="hidden"
-        whileInView="visible"
-      >
-        <h4 className="text-xl font-semibold">
-          Bachelor of Software Engineering (Honours)
-        </h4>
-        <p className="text-[#5F4B44]">
-          RMIT University, Vietnam – <em>2022 – 2026 (Expected)</em>
-        </p>
-        <ul className="list-disc list-inside text-[#5F4B44] mt-2 space-y-1">
-          <li>Minor in Artificial Intelligence and Machine Learning</li>
-          <li>Capstone Project with Intel: Report Automation</li>
-          <li>International Excellence Scholarship 2022</li>
-        </ul>
-      </motion.div>
-
-      <h4 className="text-xl font-semibold mb-4 text-[#B23A48]">
-        Courses & Certifications
-      </h4>
-      <div className="relative flex gap-3 items-center">
-        <button
-          onClick={() => scroll("left")}
-          className="backdrop-blur-sm bg-white/70 border border-[#B23A48] p-2 rounded-full shadow hover:bg-[#B23A48]/20 transition"
-        >
-          <ChevronLeft className="w-5 h-5 text-[#B23A48]" />
-        </button>
-
-        <div
-          ref={scrollRef}
-          className="overflow-x-auto flex gap-6 pb-2 scroll-smooth snap-x snap-mandatory"
-        >
-          {certifications.map((cert, i) => (
-            <motion.a
-              key={i}
-              href={cert.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.04 }}
-              className="min-w-[220px] max-w-[90vw] bg-white rounded-2xl border border-[#E4DCCF] overflow-hidden snap-center transition-all duration-300 hover:shadow-2xl shadow-lg"
-            >
-              <div className="relative w-full h-32 overflow-hidden">
-                <img
-                  src={cert.image}
-                  alt={cert.title}
-                  className="w-full h-full object-cover hover:scale-110 transition duration-500"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "certificates/placeholder.png";
-                  }}
-                />
-              </div>
-              <div className="p-4">
-                <h5 className="text-md font-semibold text-[#B23A48] leading-snug mb-1">
-                  {cert.title}
-                </h5>
-                <p className="text-sm text-[#5F4B44]">{cert.provider}</p>
-              </div>
-            </motion.a>
-          ))}
-        </div>
-
-        <button
-          onClick={() => scroll("right")}
-          className="backdrop-blur-sm bg-white/70 border border-[#B23A48] p-2 rounded-full shadow hover:bg-[#B23A48]/20 transition"
-        >
-          <ChevronRight className="w-5 h-5 text-[#B23A48]" />
-        </button>
-      </div>
-    </div>
-  );
+  const certsToShow = useMemo(() => {
+    if (showAllCerts) return certifications;
+    return certifications.slice(0, 4);
+  }, [showAllCerts]);
 
   return (
     <section
       id="experience"
-      className="relative snap-start h-screen  bg-gradient-to-br from-[#FFF8F0] via-[#FAF3E0] to-[#F4E2D8] text-[#322828] px-4 py-24 flex flex-col items-center overflow-x-hidden"
-      tabIndex={-1}>
-      <div className="absolute -top-20 -left-20 w-96 h-96 bg-[#B23A48]/30 blur-3xl rounded-full z-0 animate-pulse" />
-      <div className="absolute bottom-0 -right-20 w-96 h-96 bg-[#5F4B44]/30 blur-2xl rounded-full z-0 animate-pulse" />
+      className="relative snap-start min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FAF3E0] to-[#F4E2D8] text-[#322828] px-4 py-20 md:py-24 overflow-x-hidden"
+      tabIndex={-1}
+    >
+      {/* Background blobs */}
+      <div className="absolute -top-20 -left-20 w-96 h-96 bg-[#B23A48]/25 blur-3xl rounded-full z-0 animate-pulse" />
+      <div className="absolute bottom-0 -right-20 w-96 h-96 bg-[#5F4B44]/20 blur-2xl rounded-full z-0 animate-pulse" />
 
-      <div className="max-w-6xl w-full relative z-10">
-        {isPhone ? (
-          <>
-            <div className="flex justify-center mb-6 gap-4">
-              <button
-                onClick={() => setActiveTab("experience")}
-                className={`px-4 py-2 rounded-full font-semibold text-sm ${
-                  activeTab === "experience"
-                    ? "bg-[#B23A48] text-white"
-                    : "bg-[#FAD2D1] text-[#B23A48]"
-                }`}
-              >
-                Experience
-              </button>
-              <button
-                onClick={() => setActiveTab("education")}
-                className={`px-4 py-2 rounded-full font-semibold text-sm ${
-                  activeTab === "education"
-                    ? "bg-[#B23A48] text-white"
-                    : "bg-[#FAD2D1] text-[#B23A48]"
-                }`}
-              >
-                Education
-              </button>
+      <div className="max-w-6xl w-full mx-auto relative z-10">
+        {/* Header */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeSlideUp}
+          className="mb-10 md:mb-12"
+        >
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#B23A48]">
+            Experience
+          </h2>
+
+         
+        </motion.div>
+
+        {/* Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          {/* LEFT: Timeline */}
+          <div className="lg:col-span-2">
+            <div className="relative">
+              {/* timeline line */}
+              <div className="absolute left-[14px] top-2 bottom-2 w-[2px] bg-[#B23A48]/25 rounded-full" />
+
+              <div className="space-y-6">
+                {experienceData.map((job, i) => {
+                  const Icon = job.icon;
+                  const isOpen = expandedIndex === i;
+
+                  const bullets = job.bullets || [];
+                  const preview = bullets.slice(0, 2);
+                  const rest = bullets.slice(2);
+
+                  return (
+                    <motion.div
+                      key={`${job.title}-${job.date}-${i}`}
+                      custom={i}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      variants={fadeSlideUp}
+                      className="relative pl-10"
+                    >
+                      {/* node */}
+                      <div className="absolute left-[6px] top-5 w-4 h-4 rounded-full bg-[#B23A48] shadow" />
+                      {/* card */}
+                      <div className="bg-white rounded-3xl shadow-xl border border-[#E4DCCF] overflow-hidden">
+                        <div className="p-6">
+                          <div className="flex items-start justify-between gap-4">
+                            <div>
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className="text-xs bg-[#FAD2D1] text-[#B23A48] px-2 py-1 rounded-full font-semibold shadow inline-flex items-center gap-1">
+                                  {Icon ? <Icon className="w-4 h-4" /> : null}
+                                  {job.tag}
+                                </span>
+                              </div>
+
+                              <h4 className="text-xl font-bold leading-snug">
+                                {job.title}
+                              </h4>
+                              <p className="text-sm font-medium text-[#5F4B44] mt-1">
+                                {job.date}
+                              </p>
+                            </div>
+
+                            <button
+                              onClick={() =>
+                                setExpandedIndex(isOpen ? null : i)
+                              }
+                              className="shrink-0 inline-flex items-center gap-2 text-sm font-semibold text-[#B23A48] bg-[#FAD2D1] px-3 py-2 rounded-full hover:bg-[#B23A48]/15 transition"
+                            >
+                              {isOpen ? "Less" : "More"}
+                              <ChevronDown
+                                className={`w-4 h-4 transition ${
+                                  isOpen ? "rotate-180" : ""
+                                }`}
+                              />
+                            </button>
+                          </div>
+
+                          {/* bullets (preview) */}
+                          <ul className="mt-4 space-y-2 text-[#5F4B44]">
+                            {preview.map((pt, j) => (
+                              <li key={`${job.title}-p-${j}`} className="flex gap-2">
+                                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#B23A48]/70 shrink-0" />
+                                <span>{pt}</span>
+                              </li>
+                            ))}
+                          </ul>
+
+                          {/* expanded bullets */}
+                          <AnimatePresence>
+                            {isOpen && rest.length > 0 && (
+                              <motion.ul
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="mt-2 space-y-2 text-[#5F4B44] overflow-hidden"
+                              >
+                                {rest.map((pt, j) => (
+                                  <li
+                                    key={`${job.title}-r-${j}`}
+                                    className="flex gap-2"
+                                  >
+                                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#B23A48]/40 shrink-0" />
+                                    <span>{pt}</span>
+                                  </li>
+                                ))}
+                              </motion.ul>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
-            {activeTab === "experience" ? renderExperience() : renderEducation()}
-          </>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {renderExperience()}
-            {renderEducation()}
           </div>
-        )}
+
+          {/* RIGHT: Sticky Education + Certs */}
+          <div className="lg:col-span-1">
+            <div className="lg:sticky lg:top-24 space-y-6">
+              {/* Education */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeSlideUp}
+                className="bg-white rounded-3xl shadow-xl border border-[#E4DCCF] p-6"
+              >
+                <h3 className="text-xl font-extrabold text-[#B23A48] mb-3">
+                  Education
+                </h3>
+
+                <h4 className="text-lg font-bold">{educationData.degree}</h4>
+                <p className="text-sm text-[#5F4B44] mt-1">
+                  {educationData.school} — <em>{educationData.timeline}</em>
+                </p>
+
+                <ul className="mt-4 space-y-2 text-[#5F4B44] text-sm">
+                  {educationData.details.map((d, i) => (
+                    <li key={`edu-${i}`} className="flex gap-2">
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#B23A48]/50 shrink-0" />
+                      <span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Certifications */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeSlideUp}
+                className="bg-white rounded-3xl shadow-xl border border-[#E4DCCF] p-6"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-extrabold text-[#B23A48]">
+                    Certifications
+                  </h3>
+
+                  <button
+                    onClick={() => setShowAllCerts((v) => !v)}
+                    className="text-sm font-semibold text-[#B23A48] bg-[#FAD2D1] px-3 py-1.5 rounded-full hover:bg-[#B23A48]/15 transition"
+                  >
+                    {showAllCerts ? "Show less" : "Show all"}
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                  {certsToShow.map((cert, i) => (
+                    <a
+                      key={`${cert.title}-${i}`}
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex gap-3 items-center rounded-2xl border border-[#E4DCCF] p-3 hover:shadow-lg transition"
+                    >
+                      <div className="w-14 h-14 rounded-xl overflow-hidden border border-[#E4DCCF] bg-[#FFF8F0] shrink-0">
+                        <img
+                          src={cert.image}
+                          alt={cert.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = "certificates/placeholder.png";
+                          }}
+                        />
+                      </div>
+
+                      <div className="min-w-0">
+                        <p className="font-bold text-sm leading-snug">
+                          {cert.title}
+                        </p>
+                        <p className="text-xs text-[#5F4B44]">{cert.provider}</p>
+
+                        {cert.link && cert.link !== "#" && (
+                          <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#B23A48] mt-1">
+                            Open <ExternalLink className="w-3 h-3" />
+                          </span>
+                        )}
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
