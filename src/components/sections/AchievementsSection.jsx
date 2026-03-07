@@ -47,14 +47,17 @@ function CompCard({ item }) {
 
 function AwardCard({ item }) {
   const resultColor = ACCENT_COLOR[item.accent] ?? "#555";
+  const imgs = item.images ?? (item.image ? [item.image] : []);
   return (
     <div className="achCompCard">
-      <img
-        className="achCompImg achCompImgFull"
-        src={item.image}
-        alt={item.name}
-        onError={e => { e.currentTarget.src = PLACEHOLDER; }}
-      />
+      {imgs.length === 1 ? (
+        <img className="achCompImg achCompImgFull" src={imgs[0]} alt={item.name}
+          onError={e => { e.currentTarget.src = PLACEHOLDER; }} />
+      ) : (
+        <div className="achCompImages achCompImages--3">
+          {imgs.map((src, i) => <CompPhoto key={i} src={src} alt={`${item.name} ${i + 1}`} />)}
+        </div>
+      )}
       <div className="achCompName">{item.name}</div>
       <div className="achCompResult" style={{ color: resultColor }}>{item.org}</div>
       <div className="achCompDescriptor">({item.descriptor}{item.date ? ` · ${item.date}` : ""})</div>

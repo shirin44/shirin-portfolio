@@ -29,11 +29,13 @@ export default function App() {
   const scrollContainerRef = useRef(null);
   const folderContainerRef = useRef(null);
 
+  const animDuration = () => window.innerWidth <= 600 ? 320 : 800;
+
   const closeTab = () => {
     if (isAnimating || !activeTab) return;
     setIsAnimating(true);
     setAnimationClass("animate-put-back");
-    setTimeout(() => setActiveTab(null), 800);
+    setTimeout(() => setActiveTab(null), animDuration());
   };
 
   const playPageSound = () => {
@@ -73,7 +75,7 @@ export default function App() {
 
     if (activeTab === tabName) {
       setAnimationClass("animate-put-back");
-      setTimeout(() => setActiveTab(null), 800);
+      setTimeout(() => setActiveTab(null), animDuration());
       return;
     }
 
@@ -83,7 +85,7 @@ export default function App() {
         playPageSound();
         setActiveTab(tabName);
         setAnimationClass("animate-pull-over");
-      }, 800);
+      }, animDuration());
     } else {
       setActiveTab(tabName);
       setAnimationClass("animate-pull-over");
@@ -114,7 +116,7 @@ export default function App() {
   // Release animation lock
   useEffect(() => {
     if (!isAnimating) return;
-    const timer = setTimeout(() => setIsAnimating(false), 800);
+    const timer = setTimeout(() => setIsAnimating(false), animDuration());
     return () => clearTimeout(timer);
   }, [isAnimating]);
 
@@ -150,11 +152,35 @@ export default function App() {
 
           {!activeTab && (
             <div className="folderLanding">
+              {/* Desktop: simple name + hint (folder front shows photo/stamp) */}
               <div className="folderLandingName">Shirin Shujaa</div>
               <div className="folderLandingRole">MSc Artificial Intelligence · NLP &amp; Responsible AI</div>
               <div className="folderLandingHint">
                 <span className="folderLandingArrow">↑</span>
                 Pick a tab to explore
+              </div>
+
+              {/* Mobile only: profile card + section shortcuts */}
+              <div className="mobileLanding">
+                <img src="images/me.png" className="mobileLandingPhoto" alt="Shirin" />
+                <div className="mobileLandingStats">
+                  <div className="mobileLandingStat"><span>5</span>Papers</div>
+                  <div className="mobileLandingStat"><span>4</span>Roles</div>
+                  <div className="mobileLandingStat"><span>1st</span>Hackathon</div>
+                  <div className="mobileLandingStat"><span>Top 3%</span>Kaggle</div>
+                </div>
+                <div className="mobileLandingGrid">
+                  {TABS.map(({ name, color }) => (
+                    <button
+                      key={name}
+                      className="mobileLandingCard"
+                      style={{ background: color }}
+                      onClick={() => handleTabClick(name)}
+                    >
+                      {name}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           )}

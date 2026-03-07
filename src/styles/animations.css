@@ -53,6 +53,28 @@
 }
 
 
+/* ── Mobile overrides ── */
+@media (max-width: 600px) {
+  /* No tab entrance delay — tabs must be immediately visible */
+  .tab2 { animation: none !important; opacity: 1; }
+  /* No decorations to animate */
+  .photoAbs, .stampAbs, .stickerAbs { animation: none !important; }
+  /* Replace doc slide animation with simple fade on mobile */
+  .animate-pull-over { animation: mobileFadeIn 300ms ease forwards; }
+  .animate-put-back  { animation: mobileFadeOut 300ms ease forwards; }
+  /* Background still shifts but no heavy animations */
+  .screen { animation: bgShift 18s ease infinite; }
+}
+
+@keyframes mobileFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes mobileFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
 /* ── Tab staggered entrance ── */
 /* fill-mode: backwards → applies 'from' during delay, reverts after; no transform conflict */
 @keyframes tabIn {

@@ -520,6 +520,12 @@ body{
   gap: 6px;
   margin-bottom: 12px;
 }
+.achCompImages--3{
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.achCompImages--3 .achCompImg{
+  aspect-ratio: 3/4;
+}
 .achCompImg{
   width: 100%;
   aspect-ratio: 4/3;
@@ -1461,6 +1467,9 @@ body{
   user-select: none;
 }
 
+/* Mobile landing hidden on desktop */
+.mobileLanding{ display: none; }
+
 .folderLandingName{
   font-size: clamp(24px, 4vw, 40px);
   font-weight: 950;
@@ -1495,4 +1504,212 @@ body{
 @keyframes bounceUp{
   0%, 100%{ transform: translateY(0); }
   50%{ transform: translateY(-5px); }
+}
+
+
+/* =========================
+   Mobile — ≤ 600px
+========================= */
+@media (max-width: 600px) {
+
+  /* Full-screen container */
+  .screen{ overflow: hidden; }
+
+  .folderWrap{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  /* Folder metaphor doesn't work on mobile — hide the front entirely */
+  .folderFront{ display: none; }
+  .folderBack{ display: none; }
+
+  /* ── Tabs: 2-row wrap grid at top ── */
+  .tabsNav{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 100%;
+    height: auto;
+    transform: none;
+    z-index: 50;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,.10);
+    padding: 6px 6px 0;
+  }
+
+  .tabsRow{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: auto;
+    gap: 4px;
+    flex-wrap: unset;
+    padding: 0;
+  }
+
+  .tab2{
+    flex: unset;
+    height: 34px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(0,0,0,.15);
+    border-bottom: 1.5px solid rgba(0,0,0,.15);
+    font-size: 9px;
+    padding: 0;
+    letter-spacing: .02em;
+    box-shadow: none;
+  }
+
+  /* Doc: full screen below tab bar (tab bar = 2 rows × 34px + gaps + padding ≈ 88px) */
+  .doc{
+    position: fixed;
+    inset: 0;
+    top: 88px;
+    z-index: 20;
+    padding: 12px 12px 80px; /* bottom pad for links dock */
+    border-radius: 0;
+    overflow-y: auto;
+  }
+
+  /* Hide decorations */
+  .photoAbs{ display: none; }
+  .stampAbs{ display: none; }
+  .stickerAbs{ display: none; }
+
+  /* ── FolderLinks: fixed bottom dock ── */
+  .folderLinks{
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    flex-direction: row;
+    gap: 8px;
+    z-index: 60;
+    background: rgba(255,255,255,.90);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,.10);
+    box-shadow: 0 4px 20px rgba(0,0,0,.14);
+  }
+  .folderLink{ width: 36px; height: 36px; border-radius: 10px; }
+  .folderLink svg{ width: 17px; height: 17px; }
+
+  /* ── Content grids → 1-col ── */
+  .ab__bioRow{ grid-template-columns: 1fr; }
+  .ab__photoWrap{ flex-direction: row; align-items: center; gap: 12px; }
+  .ab__photo{ width: 72px; height: auto; aspect-ratio: unset; }
+  .ab__metrics{ grid-template-columns: 1fr 1fr; }
+  .ab__bottomGrid{ grid-template-columns: 1fr; }
+
+  .expCardHead{ flex-wrap: wrap; }
+  .expCardPeriod{ align-self: auto; margin-top: 4px; }
+
+  .pubItem{ grid-template-columns: 1fr; }
+  .pubThumb2{ width: 100%; height: 140px; }
+
+  .commHeader{ flex-direction: column; }
+  .commHeaderDesc{ text-align: left; max-width: 100%; }
+
+  .certGrid{ grid-template-columns: 1fr; }
+  .achAwardGrid{ grid-template-columns: 1fr; }
+  .achCompGrid{ grid-template-columns: 1fr; }
+  .commSpotlightGrid{ grid-template-columns: 1fr; }
+  .projCardGrid{ grid-template-columns: 1fr; }
+  .skillCatGrid{ grid-template-columns: 1fr; }
+  .expCardList{ gap: 8px; }
+  .contactLayout{ grid-template-columns: 1fr; }
+
+  /* Hide desktop-only landing text — mobile uses its own card */
+  .folderLandingName{ display: none; }
+  .folderLandingRole{ display: none; }
+  .folderLandingHint{ display: none; }
+
+  /* ── Mobile landing card ── */
+  .folderLanding{ padding: 0; align-items: stretch; min-height: unset; height: auto; justify-content: flex-start; }
+
+  .mobileLanding{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 4px 8px;
+  }
+
+  .mobileLandingPhoto{
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    border: 3px solid rgba(255,255,255,.9);
+    box-shadow: 0 8px 28px rgba(0,0,0,.18);
+  }
+
+  .mobileLandingStats{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    width: 100%;
+  }
+
+  .mobileLandingStat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 9px 4px;
+    background: rgba(255,255,255,.82);
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: rgba(0,0,0,.45);
+  }
+  .mobileLandingStat span{
+    display: block;
+    font-size: 14px;
+    font-weight: 950;
+    color: #222E45;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .mobileLandingGrid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  .mobileLandingCard{
+    height: 52px;
+    border-radius: 12px;
+    border: none;
+    color: #111;
+    font-size: 8.5px;
+    font-weight: 950;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,.14);
+    text-shadow: 0 1px 0 rgba(255,255,255,.50);
+    transition: transform 150ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 150ms;
+  }
+  .mobileLandingCard:active{
+    transform: scale(0.94);
+    box-shadow: 0 2px 6px rgba(0,0,0,.10);
+  }
+
+  /* Transparent doc so gradient background shows through */
+  .doc{ background: transparent; }
+  .bg-lined-paper{ background-color: transparent; background-image: none; }
 }

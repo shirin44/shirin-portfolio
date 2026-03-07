@@ -7,10 +7,10 @@ export const communitySpotlights = [
     story:
       "I volunteered at an RMIT community engagement event, supporting event delivery and participant experience and showcasing one of my projects. I later received a formal letter of appreciation from SSET and the EEAI project team.",
     images: [
-      "images/community/festival1.png",
-      "images/community/festival-cert.png",
+      "images/pics/festival1.png",
+      "images/pics/festival-cert.png",
     ],
-    link: "https://www.rmit.edu.vn/",
+    link: "https://www.rmit.edu.vn/news/all-news/2025/dec/vietnam-education-festival-honours-ai-innovations-in-education",
     tags: ["Volunteer", "Community"],
   },
   {
@@ -19,10 +19,10 @@ export const communitySpotlights = [
     story:
       "I supported RMIT outreach by helping deliver a hands-on robotics workshop for visiting SIS Vung Tau students. I guided students through activities and learning, helping create a positive RMIT learning experience.",
     images: [
-      "images/community/sis-vung-tau.png",
-      "images/community/sis-vung-tau.png",
+      "images/pics/sis-vung-tau.png",
+      "images/pics/sis-vung-tau2.png",
     ],
-    link: "https://www.rmit.edu.vn/",
+    link: "https://www.facebook.com/media/set/?set=a.864376486436117&type=3",
     tags: ["Outreach", "Education"],
   },
   {
@@ -31,8 +31,8 @@ export const communitySpotlights = [
     story:
       "Invited as a guest speaker for an AIESEC talk show, where I shared my journey and ideas with students. This highlights my public speaking, student leadership, and ability to inspire others.",
     images: [
-      "images/community/aiesec1.png",
-      "images/community/aiesec2.png",
+      "images/pics/aiesec1.png",
+      "images/pics/aiesec2.png",
     ],
     link: "https://aiesec.org/",
     tags: ["Public Speaking", "Leadership"],
