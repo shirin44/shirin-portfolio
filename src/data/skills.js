@@ -1,11 +1,11 @@
 import {
   FaPython, FaReact, FaNodeJs, FaGitAlt, FaDocker,
-  FaFigma, FaLinux, FaJava, FaBrain, FaFileCode,
+  FaFigma, FaLinux, FaJava, FaBrain, FaFileCode, FaDatabase,
 } from "react-icons/fa";
 import {
   SiJavascript, SiCplusplus, SiTailwindcss, SiTensorflow, SiPytorch,
   SiScikitlearn, SiOpencv, SiPandas, SiNumpy, SiJupyter, SiHuggingface,
-  SiMongodb, SiSelenium, SiLatex, SiMysql,
+  SiMongodb, SiSelenium, SiLatex, SiMysql, SiOpenai,
 } from "react-icons/si";
 import { MdVerifiedUser } from "react-icons/md";
 import { VscBeaker, VscVscode } from "react-icons/vsc";
@@ -25,6 +25,8 @@ export const skills = {
     { name: "Hugging Face", icon: SiHuggingface },
     { name: "OpenCV",       icon: SiOpencv      },
     { name: "NLTK",         icon: FaBrain       },
+    { name: "LLM",          icon: SiOpenai      },
+    { name: "RAG",          icon: FaDatabase    },
   ],
   "Data & Research": [
     { name: "pandas",  icon: SiPandas  },
