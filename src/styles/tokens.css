@@ -1,0 +1,23 @@
+:root{
+    --silver: #CACFD2;
+    --grullo: #AA9E8E;
+    --camel:  #B99366;
+    --tuscan: #76404E;
+    --scarlet:#4D0213;
+  
+    --bg: var(--silver);
+    --paper: #FFFFFB;
+    --ink: #161616;
+  
+    --accent: var(--tuscan);
+    --accent2: var(--camel);
+    --deep: var(--scarlet);
+  
+    --shadow: 0 18px 50px rgba(0,0,0,.18);
+    --shadow2: 0 10px 24px rgba(0,0,0,.14);
+    --border: rgba(0,0,0,.12);
+  
+    --r-lg: 18px;
+    --r-md: 14px;
+    --r-sm: 10px;
+  }

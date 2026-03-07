@@ -1,0 +1,52 @@
+@keyframes pull-over {
+    0% {
+      transform: translateY(0);
+      z-index: 20;
+    }
+    50% {
+      transform: translateY(-120%);
+      z-index: 20;
+    }
+    100% {
+      transform: translateY(0);
+      z-index: 100;
+      border-radius: 0%;
+      height: 100%;
+      width: 120%;
+      left: -10%;
+      top: 0;
+      bottom: 0;
+    }
+  }
+  
+  @keyframes put-back {
+    0% {
+      transform: translateY(0);
+      z-index: 100;
+      width: 120%;
+      left: -10%;
+      height: 100%;
+      border-radius: 0%;
+      top: 0;
+      bottom: 0;
+    }
+    50% {
+      transform: translateY(-120%);
+      z-index: 20;
+    }
+    100% {
+      transform: translateY(0);
+      z-index: 20;
+      width: 100%;
+      left: 0;
+      height: auto;
+    }
+  }
+  
+  .animate-pull-over {
+    animation: pull-over 0.8s ease-in-out forwards;
+  }
+  
+  .animate-put-back {
+    animation: put-back 0.8s ease-in-out forwards;
+  }
