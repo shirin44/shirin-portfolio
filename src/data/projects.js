@@ -3,6 +3,14 @@ export const projects = [
       category: "AI & ML Projects",
       items: [
         {
+          title: "AI Evidence Verification Layer",
+          date: "2025",
+          stack: ["Python", "Streamlit", "GPT-4o-mini", "FAISS", "RAG", "OpenAI"],
+          description:
+            "A Streamlit app that fact-checks documents against a trusted knowledge base via RAG. Extracts up to 18 checkable claims from uploaded reports (PDF, DOCX, TXT, PPTX), verifies each against internal reference PDFs using FAISS + text-embedding-3-large, and falls back to Brave Search for unverifiable claims. Returns supported/contradicted/not_verifiable verdicts with suggested rewrites and exportable audit reports.",
+          link: "https://github.com/shirin44/ai-evidence-verification",
+        },
+        {
           title: "PosePlay — Gesture-Controlled Game (Computer Vision)",
           date: "Jun 2025",
           stack: ["OpenCV", "MediaPipe"],

@@ -5,7 +5,7 @@ import {
 import {
   SiJavascript, SiCplusplus, SiTailwindcss, SiTensorflow, SiPytorch,
   SiScikitlearn, SiOpencv, SiPandas, SiNumpy, SiJupyter, SiHuggingface,
-  SiMongodb, SiSelenium, SiLatex, SiMysql, SiOpenai,
+  SiMongodb, SiSelenium, SiLatex, SiMysql, SiOpenai, SiStreamlit,
 } from "react-icons/si";
 import { MdVerifiedUser } from "react-icons/md";
 import { VscBeaker, VscVscode } from "react-icons/vsc";
@@ -27,6 +27,7 @@ export const skills = {
     { name: "NLTK",         icon: FaBrain       },
     { name: "LLM",          icon: SiOpenai      },
     { name: "RAG",          icon: FaDatabase    },
+    { name: "Streamlit",    icon: SiStreamlit   },
   ],
   "Data & Research": [
     { name: "pandas",  icon: SiPandas  },
