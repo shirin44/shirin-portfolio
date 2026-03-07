@@ -41,21 +41,21 @@ body{
 /* Tabs */
 .tabsNav{
   position: absolute;
-  right: 0.1;
-  width: 60%;
+  right: 0.01;
+  width: 50%;
   height: 10.666%;
-  z-index: 30; 
+  z-index: 30;
   transform: translateY(-60%);
 }
 @media (max-width: 1024px){
-  .tabsNav{ transform: translateY(-66.666%); }
+  .tabsNav{ transform: translateY(-66.666%); width: 56%; }
 }
 
 .tabsRow{
   display: flex;
   width: 100%;
   height: 100%;
-  gap: 6px;
+  gap: 5px;
 }
 
 .tab2{
@@ -75,7 +75,7 @@ body{
   font-weight: 950;
   letter-spacing: .04em;
   text-transform: uppercase;
-  font-size: clamp(14px, 1.7vw, 16px);
+  font-size: clamp(10px, 1.2vw, 13px);
   line-height: 1;
   padding-bottom: 6px;
 
@@ -85,11 +85,13 @@ body{
 }
 .tab2:hover{ transform: translateY(-2px); filter: brightness(0.98); }
 
-/* Simple color classes */
-.bg-emerald-500{ background:#10b981; }
-.bg-blue-400{ background:#60a5fa; }
-.bg-red-400{ background:#f87171; }
-.bg-amber-400{ background:#fbbf24; }
+/* Active tab state */
+.tab2--active{
+  transform: translateY(-4px);
+  filter: brightness(1.06);
+  box-shadow: 0 12px 24px rgba(0,0,0,.22);
+  border-bottom: 2px solid transparent;
+}
 
 /* Folder layers */
 .folderBack{
@@ -202,8 +204,6 @@ body{
   width: 30%;
   left: 60px;
   bottom: 24px;
-  transform: skewX(3deg) rotate(-12deg);
-  opacity: .92;
 }
 
 /* Footer under folder */
@@ -1280,17 +1280,11 @@ body{
   color: #111;
   text-decoration: none;
 
-  transition: transform 140ms ease, filter 140ms ease;
 }
 
 .folderLink svg{
   width: 22px;
   height: 22px;
-}
-
-.folderLink:hover{
-  transform: translateY(-2px);
-  filter: brightness(0.98);
 }
 
 /* CV button variant */
@@ -1348,4 +1342,157 @@ body{
 .folderLink--linkedin:hover{
   transform: translateY(-3px) rotate(0.4deg);
   filter: none;
+}
+
+/* =========================
+   Contact
+========================= */
+.contactWrap{ display: flex; flex-direction: column; gap: 0; }
+
+.contactLayout{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 680px){ .contactLayout{ grid-template-columns: 1fr; } }
+
+.contactLinks{ display: flex; flex-direction: column; gap: 8px; }
+
+.contactBox{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.09);
+  background: rgba(255,255,255,.72);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 120ms, transform 120ms;
+}
+.contactBox:hover{
+  box-shadow: 0 4px 14px rgba(0,0,0,.09);
+  transform: translateY(-1px);
+}
+
+.contactBoxIcon{ font-size: 18px; color: rgba(0,0,0,.55); flex: 0 0 auto; }
+.contactLabel{ font-size: 10px; font-weight: 950; text-transform: uppercase; letter-spacing: .08em; color: rgba(0,0,0,.45); }
+.contactValue{ font-size: 12.5px; font-weight: 700; color: rgba(0,0,0,.78); margin-top: 1px; }
+
+/* ── Form ── */
+.contactFormWrap{ display: flex; flex-direction: column; }
+
+.form{ display: flex; flex-direction: column; gap: 10px; }
+
+.field{ display: flex; flex-direction: column; gap: 4px; }
+
+.fieldLabel{
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: rgba(0,0,0,.50);
+}
+
+.fieldInput{
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(0,0,0,.13);
+  background: rgba(255,255,255,.85);
+  font-size: 13px;
+  font-family: inherit;
+  color: #111;
+  outline: none;
+  transition: border-color 140ms;
+  width: 100%;
+}
+.fieldInput:focus{ border-color: rgba(0,0,0,.35); }
+.fieldInput--area{ resize: vertical; min-height: 100px; }
+
+.formActions{ margin-top: 4px; }
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 20px;
+  border-radius: 999px;
+  background: #222E45;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 140ms, transform 120ms;
+  letter-spacing: .03em;
+}
+.btn:hover{ opacity: .88; transform: translateY(-1px); }
+.btn:disabled{ opacity: .55; cursor: not-allowed; transform: none; }
+
+.formSuccess{
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(16,185,129,.12);
+  border: 1px solid rgba(16,185,129,.30);
+  color: #065f46;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.formError{
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #9b1c1c;
+}
+
+/* ── Folder landing state ── */
+.folderLanding{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  min-height: 200px;
+  padding: 32px 20px;
+  text-align: center;
+  user-select: none;
+}
+
+.folderLandingName{
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 950;
+  letter-spacing: -0.03em;
+  color: #222E45;
+}
+
+.folderLandingRole{
+  font-size: clamp(12px, 1.4vw, 15px);
+  font-weight: 700;
+  color: rgba(0,0,0,.50);
+  letter-spacing: 0.01em;
+}
+
+.folderLandingHint{
+  margin-top: 18px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: rgba(0,0,0,.30);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.folderLandingArrow{
+  animation: bounceUp 1.4s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes bounceUp{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-5px); }
 }

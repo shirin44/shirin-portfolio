@@ -1,52 +1,54 @@
-import React, { useState } from "react";
-import Card from "../Card.jsx";
-import ContactForm from "../ContactForm.jsx";
-import TiltScreenModal from "../TiltScreenModal.jsx";
 import { profile } from "../../data/profile.js";
+import ContactForm from "../ContactForm.jsx";
+import { FaGithub } from "react-icons/fa";
+import { SiOrcid } from "react-icons/si";
+import { HiOutlineMail } from "react-icons/hi";
+import { FiLinkedin } from "react-icons/fi";
+
+const LINKS = [
+  { label: "Email",    value: profile.email,                         href: `mailto:${profile.email}`,     icon: HiOutlineMail },
+  { label: "LinkedIn", value: "linkedin.com/in/shirin-shujaa",        href: profile.links.linkedin,        icon: FiLinkedin    },
+  { label: "GitHub",   value: "github.com/shirin44",                  href: profile.links.github,          icon: FaGithub      },
+  { label: "ORCID",    value: "0009-0007-7408-3848",                  href: profile.links.orcid,           icon: SiOrcid       },
+];
 
 export default function ContactSection() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <div className="stack">
-      <Card
-        title="Contact"
-        right={
-          <button className="btn btn--ghost" onClick={() => setOpen(true)}>
-            Quick message →
-          </button>
-        }
-      >
-        <p className="lead">
-          For collaborations, research, or engineering work — email is best.
-        </p>
+    <div className="card contactWrap">
 
-        <div className="contactGrid">
-          <a className="contactBox" href={`mailto:${profile.email}`}>
-            <div className="contactLabel">Email</div>
-            <div className="contactValue">{profile.email}</div>
-          </a>
-
-          <a className="contactBox" href={profile.links.linkedin} target="_blank" rel="noreferrer">
-            <div className="contactLabel">LinkedIn</div>
-            <div className="contactValue">linkedin.com/in/shirin-shujaa</div>
-          </a>
-
-          <a className="contactBox" href={profile.links.github} target="_blank" rel="noreferrer">
-            <div className="contactLabel">GitHub</div>
-            <div className="contactValue">github.com/shirin44</div>
-          </a>
-
-          <a className="contactBox" href={profile.links.orcid} target="_blank" rel="noreferrer">
-            <div className="contactLabel">ORCID</div>
-            <div className="contactValue">0009-0007-7408-3848</div>
-          </a>
+      {/* ── Header ── */}
+      <div className="commHeader" style={{ marginBottom: 16 }}>
+        <div className="commHeaderTitle" style={{ fontSize: "clamp(22px, 3.2vw, 38px)" }}>
+          Contact
         </div>
-      </Card>
+        <div className="commHeaderDesc">
+          Open to research collaborations, internships &amp; opportunities.
+        </div>
+      </div>
 
-      <TiltScreenModal open={open} title="Send a message" onClose={() => setOpen(false)}>
-        <ContactForm email={profile.email} />
-      </TiltScreenModal>
+      <div className="contactLayout">
+
+        {/* ── Links ── */}
+        <div className="contactLinks">
+          <div className="achSectionLabel" style={{ marginBottom: 10 }}>Reach me at</div>
+          {LINKS.map(({ label, value, href, icon: Icon }) => (
+            <a key={label} className="contactBox" href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noreferrer">
+              <Icon className="contactBoxIcon" />
+              <div>
+                <div className="contactLabel">{label}</div>
+                <div className="contactValue">{value}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        {/* ── Form ── */}
+        <div className="contactFormWrap">
+          <div className="achSectionLabel" style={{ marginBottom: 10 }}>Send a message</div>
+          <ContactForm />
+        </div>
+
+      </div>
     </div>
   );
 }

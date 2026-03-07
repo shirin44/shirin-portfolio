@@ -1,8 +1,11 @@
-import React from "react";
-
-export default function Tab({ text, bgColorClass, onClick }) {
+export default function Tab({ text, color, active, onClick }) {
   return (
-    <button type="button" className={`tab2 ${bgColorClass}`} onClick={onClick}>
+    <button
+      type="button"
+      className={"tab2" + (active ? " tab2--active" : "")}
+      style={{ background: color }}
+      onClick={onClick}
+    >
       {text}
     </button>
   );

@@ -1,5 +1,4 @@
 // src/components/FolderLinks.jsx
-import React from "react";
 import { profile } from "../data/profile.js";
 import { FaGithub, FaRegFilePdf } from "react-icons/fa";
 import { SiOrcid } from "react-icons/si";
@@ -60,7 +59,7 @@ export default function FolderLinks() {
 
       <a
         className="folderLink folderLink--cv"
-        href="/files/Shirin_Shujjaa_CV.pdf"
+        href="/shirin-portfolio/ShirinShujaa_CV.pdf"
         download
         aria-label="Download CV"
         title="Download CV"
