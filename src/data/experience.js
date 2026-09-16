@@ -1,10 +1,31 @@
 export const experience = [
   {
+    org: "Zeb11",
+    role: "AI Research Engineer",
+    period: "Jul 2026 \u2013 Present",
+    logo: "images/logos/Zeb11.png",
+    bullets: [
+      "Conducting research on LLMs, AI safety, AI alignment, and generative AI.",
+      "Designing experiments and evaluation protocols to assess model behavior, robustness, fairness, and reliability.",
+      "Developing AI prototypes and proof-of-concept applications for enterprise and public-sector use cases.",
+      "Building end-to-end AI systems using Python and modern ML frameworks while collaborating across research and engineering to translate novel ideas into deployable solutions.",
+    ],
+  },
+  {
+    org: "L3i \u2014 University of La Rochelle",
+    role: "NLP Research Intern",
+    period: "Jul 2026 \u2013 Present",
+    bullets: [
+      "Investigated the robustness of LLMs for causal narrative detection in OCR-degraded historical documents.",
+      "Designed experiments, established performance baselines, and conducted error analyses to identify the effects of different OCR error types.",
+      "Contributed to the ANR MILL-EHNAS project by advancing methods for large-scale historical text analysis without manual OCR correction.",
+    ],
+  },
+  {
     org: "RMIT University Vietnam",
     role: "Research Assistant \u2014 AI & Health Informatics Research Cluster",
-    period: "Sep 2025 \u2013 Feb 2026",
+    period: "Jun 2025 \u2013 Jun 2026",
     logo: "images/logos/rmit.png",
-    meta: "Project CC_10229: Toward Responsible Gen AI for Low-Resource Languages",
     bullets: [
       "Conducting NLP research on cultural and linguistic bias in AI-generated text.",
       "Designing data pipelines for prompt engineering, model sampling, and dataset documentation.",

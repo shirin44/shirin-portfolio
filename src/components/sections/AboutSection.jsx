@@ -2,23 +2,23 @@
 import { profile } from "../../data/profile.js";
 
 const METRICS = [
-  { num: "5",      label: "Papers Published",  sub: "ACM/IEEE · Springer · IEEE", fill: 85 },
-  { num: "3",      label: "Research Venues",   sub: "Top-tier conferences",        fill: 70 },
+  { num: "7",      label: "Papers & Chapters", sub: "ACM/IEEE · Springer · Elsevier", fill: 90 },
+  { num: "4",      label: "Research Venues",   sub: "Top-tier conferences",        fill: 75 },
   { num: "Top 3%", label: "Kaggle Ranking",    sub: "House Price Prediction",      fill: 97 },
   { num: "1st",    label: "AI Hackathon",      sub: "CoverGo 2025",                fill: 100 },
 ];
 
 const GLANCE = [
-  { k: "Research", v: "Cultural Bias · LLM Evaluation · Low-Resource NLP" },
+  { k: "Research", v: "AI Alignment · LLM Evaluation · Low-Resource NLP" },
   { k: "Stack",    v: "Python · PyTorch · HuggingFace · scikit-learn" },
   { k: "Tools",    v: "Git · Docker · Linux · Jupyter" },
   { k: "Languages",v: "English (IELTS 8.0) · Arabic (Native) · French (B1)" },
 ];
 
 const FOCUS = [
-  "Bias detection & LLM evaluation — cultural and linguistic fairness in generative models",
+  "AI alignment & LLM evaluation — model behavior, robustness, fairness, and reliability",
   "Generative AI for Vietnamese — low-resource NLP pipelines and dataset documentation",
-  "Human-centred AI — fairness, transparency, real-world deployment constraints",
+  "Human-centred AI — fairness, transparency, alignment, and real-world deployment constraints",
 ];
 
 const RECOGNITION = [
@@ -48,7 +48,7 @@ export default function AboutSection() {
 
         <div className="ab__photoWrap">
           <img
-            src="images/me.png"
+            src="images/MENEW.jpg"
             alt={profile.name}
             className="ab__photo"
             onError={(e) => { e.currentTarget.style.display = "none"; }}
@@ -59,15 +59,16 @@ export default function AboutSection() {
         <div className="ab__statement">
           <div className="ab__sectionLabel">Personal Statement</div>
           <p className="ab__bio">
-            <strong>Second-year MSc Artificial Intelligence</strong> student at RMIT University,
+            <strong>AI Research Engineer</strong> and second-year{" "}
+            <strong>Master of AI</strong> student at RMIT University,
             specialising in <strong>NLP</strong> and <strong>Responsible AI</strong>.
-            My research focuses on <strong>cultural &amp; linguistic bias in LLMs</strong>,
-            evaluation frameworks for generative models, and AI for{" "}
+            My research focuses on <strong>AI alignment</strong>, LLM evaluation,
+            and generative AI for{" "}
             <strong>low-resource languages</strong>. I care about building technology
-            that is <strong>fair, transparent, and human-centred</strong>.
+            that is <strong>fair, transparent, aligned, and human-centred</strong>.
           </p>
           <div className="tagRow" style={{ marginTop: 8 }}>
-            <span className="tag">Responsible GenAI</span>
+            <span className="tag">AI Alignment</span>
             <span className="tag">Bias &amp; Fairness</span>
             <span className="tag">Low-Resource NLP</span>
             <span className="tag">Human–AI Interaction</span>
@@ -112,14 +113,14 @@ export default function AboutSection() {
           <div className="ab__sectionLabel">Education</div>
           <div className="ab__eduItem">
             <div className="ab__eduDeg">
-              MSc Artificial Intelligence
+              Master of Artificial Intelligence
               <span className="ab__eduBadge">2nd Year</span>
             </div>
-            <div className="ab__eduOrg">RMIT University Vietnam · 2026</div>
+            <div className="ab__eduOrg">RMIT University · Feb–Dec 2026</div>
           </div>
           <div className="ab__eduItem">
             <div className="ab__eduDeg">BSc Software Engineering (Hons)</div>
-            <div className="ab__eduOrg">Minor in AI &amp; ML · RMIT Vietnam</div>
+            <div className="ab__eduOrg">Minor in AI &amp; ML · RMIT University · Nov 2022–Feb 2026</div>
             <div className="ab__scholarship">Academic Excellence Scholarship · 2022–2026</div>
           </div>
         </div>

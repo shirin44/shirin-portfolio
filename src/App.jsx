@@ -29,7 +29,7 @@ export default function App() {
   const scrollContainerRef = useRef(null);
   const folderContainerRef = useRef(null);
 
-  const animDuration = () => window.innerWidth <= 600 ? 320 : 800;
+  const animDuration = () => window.innerWidth <= 1024 ? 320 : 800;
 
   const closeTab = () => {
     if (isAnimating || !activeTab) return;
@@ -154,7 +154,7 @@ export default function App() {
             <div className="folderLanding">
               {/* Desktop: simple name + hint (folder front shows photo/stamp) */}
               <div className="folderLandingName">Shirin Shujaa</div>
-              <div className="folderLandingRole">MSc Artificial Intelligence · NLP &amp; Responsible AI</div>
+              <div className="folderLandingRole">AI Research Engineer · NLP &amp; Responsible AI</div>
               <div className="folderLandingHint">
                 <span className="folderLandingArrow">↑</span>
                 Pick a tab to explore
@@ -162,10 +162,10 @@ export default function App() {
 
               {/* Mobile only: profile card + section shortcuts */}
               <div className="mobileLanding">
-                <img src="images/me.png" className="mobileLandingPhoto" alt="Shirin" />
+                <img src="images/MENEW.jpg" className="mobileLandingPhoto" alt="Shirin" />
                 <div className="mobileLandingStats">
-                  <div className="mobileLandingStat"><span>5</span>Papers</div>
-                  <div className="mobileLandingStat"><span>4</span>Roles</div>
+                  <div className="mobileLandingStat"><span>7</span>Papers</div>
+                  <div className="mobileLandingStat"><span>6</span>Roles</div>
                   <div className="mobileLandingStat"><span>1st</span>Hackathon</div>
                   <div className="mobileLandingStat"><span>Top 3%</span>Kaggle</div>
                 </div>
@@ -193,7 +193,7 @@ export default function App() {
           <div className="photoAbs">
             <div className="tape tl" aria-hidden="true" />
             <div className="tape tr" aria-hidden="true" />
-            <img src="images/me.png" alt="Shirin" />
+            <img src="images/MENEW.jpg" alt="Shirin" />
           </div>
 
           <img className="stampAbs" src="images/stamp.png" alt="Stamp" />
