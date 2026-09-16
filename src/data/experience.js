@@ -15,6 +15,7 @@ export const experience = [
     org: "L3i \u2014 University of La Rochelle",
     role: "NLP Research Intern",
     period: "Jul 2026 \u2013 Present",
+    logo: "images/logos/L3i.png",
     bullets: [
       "Investigated the robustness of LLMs for causal narrative detection in OCR-degraded historical documents.",
       "Designed experiments, established performance baselines, and conducted error analyses to identify the effects of different OCR error types.",
