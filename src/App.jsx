@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Tab from "./components/Tab.jsx";
 import FolderLinks from "./components/FolderLinks.jsx";
+import DeskItem from "./components/DeskItem.jsx";
 import AboutSection from "./components/sections/AboutSection.jsx";
 import PublicationsSection from "./components/sections/PublicationsSection.jsx";
 import ProjectsSection from "./components/sections/ProjectsSection.jsx";
@@ -233,16 +234,26 @@ export default function App() {
         <FolderLinks dock />
 
         <div className="folderFront">
-          <div className="stickerAbs">Shirin's Stuff</div>
+          {/* Cover objects can be picked up and moved around the folder */}
+          <DeskItem constraints={{ left: -20, right: 640, top: -30, bottom: 460 }}>
+            <div className="stickerAbs">Shirin's Stuff</div>
+          </DeskItem>
+
           <FolderLinks />
 
-          <div className="photoAbs">
-            <div className="tape tl" aria-hidden="true" />
-            <div className="tape tr" aria-hidden="true" />
-            <img src="images/MENEW.jpg" alt="Shirin" />
-          </div>
+          <DeskItem constraints={{ left: -620, right: 60, top: -110, bottom: 120 }}>
+            <div className="photoAbs">
+              <div className="tape tl" aria-hidden="true" />
+              <div className="tape tr" aria-hidden="true" />
+              <img src="images/MENEW.jpg" alt="Shirin" draggable={false} />
+            </div>
+          </DeskItem>
 
-          <img className="stampAbs" src="images/stamp.png" alt="Stamp" />
+          <DeskItem constraints={{ left: -40, right: 620, top: -420, bottom: 20 }}>
+            <img className="stampAbs" src="images/stamp.png" alt="Stamp" draggable={false} />
+          </DeskItem>
+
+          <div className="handNote coverHint" aria-hidden="true">psst… you can move things</div>
         </div>
 
       </div>

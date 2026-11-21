@@ -1,5 +1,5 @@
 // src/components/sections/PublicationsSection.jsx
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import FileHeader from "../FileHeader.jsx";
 import { publicationsData } from "../../data/publications.js";
 
@@ -28,6 +28,7 @@ function getPrimaryReadLink(p) {
 }
 
 function PubItem({ p }) {
+  const [imgOk, setImgOk] = useState(Boolean(p.image));
   const doiUrl  = buildDoiUrl(p.doi);
   const readUrl = getPrimaryReadLink(p);
   const ss      = statusStyle(p.status);
@@ -35,13 +36,22 @@ function PubItem({ p }) {
   return (
     <div className="pubItem">
       <div className="pubThumb2">
-        <img
-          src={p.image || "images/pubs/placeholder.png"}
-          alt={p.title}
-          loading="lazy"
-          decoding="async"
-          onError={e => { e.currentTarget.src = "images/pubs/placeholder.png"; }}
-        />
+        {imgOk ? (
+          <img
+            src={p.image}
+            alt={p.title}
+            loading="lazy"
+            decoding="async"
+            onError={() => setImgOk(false)}
+          />
+        ) : (
+          /* No figure yet: draw a miniature first page of the paper instead */
+          <div className="paperCover" aria-hidden="true">
+            <div className="paperCover__title">{p.title}</div>
+            <div className="paperCover__authors">{p.authors}</div>
+            <div className="paperCover__lines" />
+          </div>
+        )}
       </div>
 
       <div className="pubBody">
@@ -49,7 +59,7 @@ function PubItem({ p }) {
           <span className={`stamp ${ss === STATUS_STYLE.published ? "stamp--published" : "stamp--pending"}`}>
             {p.status}
           </span>
-          <span className="pubYear">{p.year}</span>
+          <span className="pubYear">{p.year}{p.pages ? ` · pp. ${p.pages}` : ""}</span>
         </div>
 
         <div className="pubItemTitle">{p.title}</div>
@@ -93,7 +103,10 @@ export default function PublicationsSection() {
     <div className="card pubWrap">
 
       {/* ── Header ── */}
-      <FileHeader no={2} title="Publications & Research" meta={`${publicationsData.length} papers · ${publishedCount} published · ${acceptedCount} accepted`} note={`${acceptedCount} more on the way!`} />
+      <FileHeader no={2} title="Publications & Research" meta={acceptedCount
+        ? `${publicationsData.length} papers · ${publishedCount} published · ${acceptedCount} accepted`
+        : `${publishedCount} published papers · ACM · IEEE · Springer · Elsevier`}
+        note={acceptedCount ? `${acceptedCount} more on the way!` : `all ${publishedCount} out in the world!`} />
 
       {/* ── Search ── */}
       <input
