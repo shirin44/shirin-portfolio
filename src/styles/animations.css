@@ -63,7 +63,6 @@
   .animate-pull-over { animation: mobileFadeIn 300ms ease forwards; }
   .animate-put-back  { animation: mobileFadeOut 300ms ease forwards; }
   /* Background still shifts but no heavy animations */
-  .screen { animation: bgShift 18s ease infinite; }
 }
 
 @keyframes mobileFadeIn {
@@ -114,7 +113,6 @@
 .screen {
   background: linear-gradient(135deg, #dbeafe 0%, #e6f4ff 30%, #fce7f3 60%, #fff7ed 100%);
   background-size: 300% 300%;
-  animation: bgShift 18s ease infinite;
 }
 
 
@@ -127,7 +125,7 @@
 }
 
 .photoAbs {
-  animation: photoRock 5s ease-in-out infinite;
+  transform: skewX(3deg) rotate(10deg);
 }
 
 
@@ -139,7 +137,6 @@
 }
 
 .stickerAbs {
-  animation: stickerSway 6s ease-in-out infinite;
   cursor: default;
 }
 
@@ -159,9 +156,8 @@
 }
 
 .stampAbs {
-  animation:
-    stampEntry 0.65s cubic-bezier(0.34, 1.1, 0.64, 1) 0.9s backwards,
-    stampIdle  9s ease-in-out 1.6s infinite;
+  /* lands once on load, then stays put */
+  animation: stampEntry 0.65s cubic-bezier(0.34, 1.1, 0.64, 1) 0.9s both;
 }
 
 

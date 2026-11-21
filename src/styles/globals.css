@@ -1378,7 +1378,6 @@ p, .achCompStory, .projCardDesc, .expCardBullets li, .achRowDesc, .commHeaderDes
   border-radius: 50%;
   background: #10b981;
   box-shadow: 0 0 0 2px rgba(16,185,129,.30);
-  animation: pulse 2s ease-in-out infinite;
 }
 @keyframes pulse{
   0%,100%{ box-shadow: 0 0 0 2px rgba(16,185,129,.30); }
@@ -1601,10 +1600,7 @@ p, .achCompStory, .projCardDesc, .expCardBullets li, .achRowDesc, .commHeaderDes
   gap: 6px;
 }
 
-.folderLandingArrow{
-  animation: bounceUp 1.4s ease-in-out infinite;
-  display: inline-block;
-}
+.folderLandingArrow{ display: inline-block; }
 
 @keyframes bounceUp{
   0%, 100%{ transform: translateY(0); }
@@ -1848,10 +1844,7 @@ p, .achCompStory, .projCardDesc, .expCardBullets li, .achRowDesc, .commHeaderDes
     color: var(--text-3);
   }
 
-  .mobileLandingArrow{
-    animation: bounceUp 1.4s ease-in-out infinite;
-    display: inline-block;
-  }
+  .mobileLandingArrow{ display: inline-block; }
 
   /* Transparent doc so gradient background shows through */
   .doc{ background: transparent; }
@@ -2259,14 +2252,7 @@ mark:nth-of-type(3){ animation-delay: 1.2s; }
   75% { transform: rotate(-3deg) scale(1.06); }
   100%{ transform: rotate(-3deg) scale(1); }
 }
-.stamp{ animation: stampThud .45s cubic-bezier(.2,.8,.3,1) backwards; }
-.pubItem:nth-child(1) .stamp{ animation-delay: .25s; }
-.pubItem:nth-child(2) .stamp{ animation-delay: .4s; }
-.pubItem:nth-child(3) .stamp{ animation-delay: .55s; }
-.pubItem:nth-child(4) .stamp{ animation-delay: .7s; }
-.pubItem:nth-child(5) .stamp{ animation-delay: .85s; }
-.pubItem:nth-child(6) .stamp{ animation-delay: 1s; }
-.pubItem:nth-child(n+7) .stamp{ animation-delay: 1.15s; }
+
 
 /* ── Polaroids develop from washed-out to full colour ── */
 @keyframes develop{
@@ -2274,9 +2260,7 @@ mark:nth-of-type(3){ animation-delay: 1.2s; }
   60% { filter: grayscale(.35) brightness(1.15) contrast(.85) sepia(.25); }
   100%{ filter: none; }
 }
-.achCompImg, .fileCover__photo img{ animation: develop 2.4s ease-out .2s backwards; }
-.achCompImages .achCompImg:nth-child(2){ animation-delay: .5s; }
-.achCompImages .achCompImg:nth-child(3){ animation-delay: .8s; }
+
 
 @media (max-width: 1024px){
   .coverHint{ display: none; }
