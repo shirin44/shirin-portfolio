@@ -4,7 +4,7 @@ export const press = [
     outlet: "RMIT Vietnam News",
     date: "Nov 2026",
     title: "From Syria to Vietnam to France: young AI researcher takes the next leap",
-    blurb: "Seven publications in NLP and responsible AI, a string of 2025 competition wins, and a PhD in France next.",
+    blurb: "Seven publications in NLP and responsible AI and a string of 2025 competition wins.",
     link: "https://www.rmit.edu.vn/news/all-news/2026/nov/from-syria-to-vietnam-to-france-young-ai-researcher-takes-the-next-leap",
   },
   {
