@@ -1,5 +1,6 @@
 // src/components/sections/PublicationsSection.jsx
 import React, { useMemo, useState } from "react";
+import FileHeader from "../FileHeader.jsx";
 import { publicationsData } from "../../data/publications.js";
 
 const STATUS_STYLE = {
@@ -45,7 +46,7 @@ function PubItem({ p }) {
 
       <div className="pubBody">
         <div className="pubItemTop">
-          <span className="pubStatusBadge" style={{ background: ss.bg, borderColor: ss.border, color: ss.color }}>
+          <span className={`stamp ${ss === STATUS_STYLE.published ? "stamp--published" : "stamp--pending"}`}>
             {p.status}
           </span>
           <span className="pubYear">{p.year}</span>
@@ -92,12 +93,7 @@ export default function PublicationsSection() {
     <div className="card pubWrap">
 
       {/* ── Header ── */}
-      <div className="commHeader">
-        <div className="commHeaderTitle">Publications<br />&amp; Research</div>
-        <div className="commHeaderDesc">
-          {publicationsData.length} papers &nbsp;·&nbsp; {publishedCount} published &nbsp;·&nbsp; {acceptedCount} accepted
-        </div>
-      </div>
+      <FileHeader no={2} title="Publications & Research" meta={`${publicationsData.length} papers · ${publishedCount} published · ${acceptedCount} accepted`} note={`${acceptedCount} more on the way!`} />
 
       {/* ── Search ── */}
       <input

@@ -35,9 +35,11 @@ export default function AboutSection() {
       {/* ── Header ── */}
       <div className="ab__header">
         <div>
-          <div className="ab__name">{profile.name}</div>
+          <div className="fileHead__no">File 01</div>
+          <h2 className="ab__name">{profile.name}</h2>
           <div className="ab__role">{profile.headline}</div>
         </div>
+        <div className="handNote ab__note" aria-hidden="true">hi, nice to meet you!</div>
       </div>
 
       {/* ── Bio row: photo | statement | quick glance ── */}
@@ -58,10 +60,10 @@ export default function AboutSection() {
             <strong>AI Research Engineer</strong> and second-year{" "}
             <strong>Master of AI</strong> student at RMIT University,
             specialising in <strong>NLP</strong> and <strong>Responsible AI</strong>.
-            My research focuses on <strong>AI alignment</strong>, LLM evaluation,
+            My research focuses on <mark>AI alignment</mark>, LLM evaluation,
             and generative AI for{" "}
-            <strong>low-resource languages</strong>. I care about building technology
-            that is <strong>fair, transparent, aligned, and human-centred</strong>.
+            <mark>low-resource languages</mark>. I care about building technology
+            that is <mark>fair, transparent, aligned, and human-centred</mark>.
           </p>
           <div className="tagRow" style={{ marginTop: 8 }}>
             <span className="tag">AI Alignment</span>

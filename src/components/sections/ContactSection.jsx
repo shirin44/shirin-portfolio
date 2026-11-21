@@ -1,4 +1,5 @@
 import { profile } from "../../data/profile.js";
+import FileHeader from "../FileHeader.jsx";
 import ContactForm from "../ContactForm.jsx";
 import { FiGithub, FiLinkedin, FiMail, FiArrowRight } from "react-icons/fi";
 import { SiOrcid } from "react-icons/si";
@@ -36,9 +37,7 @@ export default function ContactSection() {
 
       {/* ── Header ── */}
       <div className="contactHeader">
-        <div className="commHeaderTitle" style={{ fontSize: "clamp(22px, 3.2vw, 38px)" }}>
-          Work with me on<br />NLP &amp; Responsible AI
-        </div>
+        <FileHeader no={8} title="Work with me on NLP & Responsible AI" note="don't be shy, say hi!" />
         <div className="contactAvail">
           <span className="contactAvailDot" />
           Open to research collaborations &amp; internships

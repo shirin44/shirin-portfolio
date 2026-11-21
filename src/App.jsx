@@ -181,12 +181,20 @@ export default function App() {
               {/* Mobile only: profile hero — the tab bar above is the only
                   nav, so this doesn't repeat it as a second grid of buttons */}
               <div className="mobileLanding">
-                <img src="images/MENEW.jpg" className="mobileLandingPhoto" alt="Shirin" />
-                <div className="mobileLandingName">Shirin Shujaa</div>
-                <div className="mobileLandingRole">AI Research Engineer · NLP &amp; Responsible AI</div>
-                <p className="mobileLandingBio">
-                  Researching AI alignment, LLM evaluation, and generative AI for low-resource languages.
-                </p>
+                {/* Manila file cover — the phone version of the desktop folder */}
+                <div className="fileCover">
+                  <div className="fileCover__label">Shirin's Stuff</div>
+                  <div className="fileCover__photo">
+                    <span className="tape tl" aria-hidden="true" />
+                    <img src="images/MENEW.jpg" alt="Shirin Shujaa" />
+                  </div>
+                  <img className="fileCover__stamp" src="images/stamp.png" alt="" aria-hidden="true" />
+                  <h1 className="mobileLandingName">Shirin Shujaa</h1>
+                  <div className="mobileLandingRole">AI Research Engineer · NLP &amp; Responsible AI</div>
+                  <p className="mobileLandingBio">
+                    Researching <mark>AI alignment</mark>, LLM evaluation, and generative AI for <mark>low-resource languages</mark>.
+                  </p>
+                </div>
 
                 <div className="landingCtas">
                   <button type="button" className="btn" onClick={() => handleTabClick("Contact")}>

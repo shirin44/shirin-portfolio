@@ -1976,3 +1976,245 @@ p, .achCompStory, .projCardDesc, .expCardBullets li, .achRowDesc, .commHeaderDes
   }
   .folderLinks--dock .folderLink svg{ width: 20px; height: 20px; }
 }
+
+/* =====================================================
+   Case-file theme — the inside pages carry the folder
+   metaphor: typed file numbers, serif titles, handwritten
+   margin notes, rubber stamps, polaroids, index cards.
+===================================================== */
+
+/* ── Section header ── */
+.fileHead{
+  position: relative;
+  margin-bottom: 22px;
+  padding-right: 190px;
+}
+.fileHead__no{
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 3px 8px;
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  border: 1px dashed rgba(118,64,78,.5);
+  border-radius: 4px;
+}
+.fileHead__title{
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.04;
+  letter-spacing: -.02em;
+  color: var(--accent);
+  text-wrap: balance;
+}
+.fileHead__meta{
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Handwritten margin note */
+.handNote{
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 1.05;
+  color: var(--accent2);
+  transform: rotate(-4deg);
+  text-decoration: underline wavy rgba(118,64,78,.45);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 7px;
+}
+.fileHead__note{
+  position: absolute;
+  right: 6px;
+  top: 30px;
+  max-width: 180px;
+  text-align: center;
+}
+
+/* ── About ── */
+.ab__header{ align-items: center; }
+.ab__name{
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.6vw, 46px);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -.02em;
+}
+.ab__note{ flex: 0 0 auto; margin-right: 8px; }
+
+/* Highlighter marker on key phrases */
+mark{
+  color: inherit;
+  font-weight: 700;
+  background: linear-gradient(transparent 38%, var(--highlight) 38%, var(--highlight) 92%, transparent 92%);
+  padding: 0 .12em;
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+}
+
+.ab__metricNum, .folderLandingName, .mobileLandingName, .mobileLandingStatItem span{
+  font-family: var(--font-display);
+}
+
+/* ── Rubber-stamp statuses ── */
+.stamp{
+  display: inline-block;
+  padding: 3px 8px 2px;
+  font-family: var(--font-label);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  transform: rotate(-3deg);
+  opacity: .9;
+}
+.stamp--published{ color: var(--accent); }
+.stamp--pending{ color: #8a5a1f; }
+
+/* ── Polaroid photos ── */
+.achCompImages{ gap: 12px; padding: 6px 4px 2px; }
+.achCompImg{
+  padding: 6px 6px 20px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 2px;
+  box-shadow: 0 8px 16px rgba(0,0,0,.14);
+  transform: rotate(-2deg);
+  transition: transform 220ms ease;
+}
+.achCompImages .achCompImg:nth-child(even){ transform: rotate(2.2deg); }
+.achCompImgFull{ transform: rotate(-1deg); }
+.achCompCard:hover .achCompImg{ transform: rotate(0) scale(1.02); }
+
+/* ── Projects as ruled index cards ── */
+.projCard{
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 4px;
+  background-color: #fff;
+  background-image:
+    linear-gradient(rgba(214,72,72,.5), rgba(214,72,72,.5)),
+    repeating-linear-gradient(to bottom, transparent 0 23px, rgba(70,120,190,.08) 23px 24px);
+  background-size: 100% 1.5px, 100% calc(100% - 46px);
+  background-position: 0 44px, 0 46px;
+  background-repeat: no-repeat;
+  box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 18px rgba(0,0,0,.06);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.projCardTop{ min-height: 20px; padding-bottom: 10px; }
+.projCard:nth-child(odd):hover { transform: rotate(-.7deg) translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,.12); }
+.projCard:nth-child(even):hover{ transform: rotate(.7deg)  translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,.12); }
+
+/* ── Phone ── */
+@media (max-width: 1024px){
+  .fileHead{ padding-right: 0; }
+  .fileHead__note{ position: static; display: inline-block; margin-top: 12px; text-align: left; }
+  .ab__header{ flex-direction: column; align-items: flex-start; gap: 10px; }
+
+  /* Notebook paper is back on phones */
+  .doc.bg-lined-paper{
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(to right, rgba(0,0,0,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,.04) 1px, transparent 1px);
+    background-size: 20px 100%, 100% 20px;
+  }
+
+  /* Tabs keep their folder colours: a dot at rest, filled when open */
+  .tab2::before{
+    content: "";
+    width: 8px;
+    height: 8px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: var(--tab);
+    flex: 0 0 auto;
+  }
+  .tab2--active{
+    background: var(--tab) !important;
+    border-color: rgba(0,0,0,.18);
+    color: #111;
+  }
+  .tab2--active::before{ background: rgba(0,0,0,.55); }
+
+  /* Manila file cover on the phone landing */
+  .fileCover{
+    position: relative;
+    width: 100%;
+    margin-top: 26px;
+    padding: 64px 20px 26px;
+    background: var(--manila);
+    border-radius: 4px 14px 14px 14px;
+    box-shadow: 0 16px 34px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.5);
+    text-align: center;
+  }
+  .fileCover::before{          /* the folder tab */
+    content: "";
+    position: absolute;
+    top: -18px;
+    left: 0;
+    width: 44%;
+    height: 22px;
+    background: var(--manila);
+    border-radius: 10px 10px 0 0;
+  }
+  .fileCover__label{
+    position: absolute;
+    top: 16px;
+    left: 14px;
+    padding: 5px 10px;
+    background: #fffef7;
+    border: 1.5px solid rgba(0,0,0,.14);
+    border-radius: 6px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.12);
+    font-size: 13px;
+    font-weight: 900;
+    transform: rotate(-6deg);
+  }
+  .fileCover__photo{
+    position: relative;
+    width: 156px;
+    margin: 0 auto 20px;
+    padding: 8px 8px 28px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 14px 26px rgba(0,0,0,.2);
+    transform: rotate(4deg);
+  }
+  .fileCover__photo img{
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .fileCover__photo .tape.tl{
+    top: -9px;
+    left: 50%;
+    width: 64px;
+    transform: translateX(-50%) rotate(-5deg);
+  }
+  .fileCover__stamp{
+    position: absolute;
+    top: 30px;
+    right: 8px;
+    width: 92px;
+    opacity: .85;
+    transform: rotate(-14deg);
+    mix-blend-mode: multiply;
+  }
+  .mobileLandingName{ margin: 0; font-size: 32px; font-weight: 700; color: var(--accent); }
+  .mobileLandingRole{ color: rgba(0,0,0,.66); }
+  .mobileLandingBio{ margin-inline: auto; color: rgba(0,0,0,.74); }
+  .folderLanding{ padding-top: 4vh; }
+}

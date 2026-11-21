@@ -1,5 +1,6 @@
 // src/components/sections/AchievementsSection.jsx
 import { awardSpotlights, certificationsData, competitionSpotlights } from "../../data/achievements.js";
+import FileHeader from "../FileHeader.jsx";
 
 const PLACEHOLDER = "images/achievements/placeholder.png";
 
@@ -99,10 +100,7 @@ export default function AchievementsSection() {
     <div className="card achWrap">
 
       {/* ── Header ── */}
-      <div className="commHeader">
-        <div className="commHeaderTitle">Competitions<br />&amp; Achievements</div>
-        
-      </div>
+      <FileHeader no={6} title="Competitions & Achievements" meta="Hackathons, Kaggle, awards & grants" note="proudest moments" />
 
       {/* ── Competition spotlight grid ── */}
       <div className="achCompGrid">

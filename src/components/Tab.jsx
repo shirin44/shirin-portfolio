@@ -14,7 +14,7 @@ export default function Tab({ text, color, active, onClick }) {
       type="button"
       aria-current={active ? "page" : undefined}
       className={"tab2" + (active ? " tab2--active" : "")}
-      style={{ background: color }}
+      style={{ background: color, "--tab": color }}
       onClick={onClick}
     >
       {text}

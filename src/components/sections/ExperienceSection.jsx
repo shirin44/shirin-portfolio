@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import FileHeader from "../FileHeader.jsx";
 import { experience } from "../../data/experience.js";
 
 const ORG_ACCENT = {
@@ -60,14 +61,7 @@ export default function ExperienceSection() {
     <div className="card expWrap">
 
       {/* ── Header ── */}
-      <div className="commHeader" style={{ marginBottom: 10 }}>
-        <div className="commHeaderTitle" style={{ fontSize: "clamp(22px, 3.2vw, 38px)" }}>
-          Experience
-        </div>
-        <div className="commHeaderDesc">
-          {experience.length} roles &nbsp;·&nbsp; Research, AI/NLP, automation &amp; full-stack
-        </div>
-      </div>
+      <FileHeader no={3} title="Experience" meta={`${experience.length} roles · research, AI/NLP, automation & full-stack`} note="from labs to production" />
 
       {/* ── Search ── */}
       <input

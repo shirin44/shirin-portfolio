@@ -1,5 +1,6 @@
 // src/components/sections/CommunitySection.jsx
 import { communitySpotlights, communityData } from "../../data/community.js";
+import FileHeader from "../FileHeader.jsx";
 
 const PLACEHOLDER = "images/achievements/placeholder.png";
 
@@ -65,9 +66,7 @@ export default function CommunitySection() {
     <div className="card commWrap">
 
       {/* ── Header ── */}
-      <div className="commHeader">
-        <div className="commHeaderTitle">Community<br />Engagement</div>
-      </div>
+      <FileHeader no={5} title="Community" meta="Volunteering, outreach & service" note="giving back ♥" />
 
       {/* ── 2-column spotlight grid ── */}
       <div className="commSpotlightGrid">

@@ -37,6 +37,16 @@
     --r-sm: 6px;
     --r-pill: 999px;
 
+    /* ── Type ── */
+    --font-display: "Fraunces", Georgia, serif;     /* headings, big numbers */
+    --font-hand: "Caveat", "Bradley Hand", cursive; /* margin notes only */
+    --font-label: ui-monospace, "SF Mono", Menlo, monospace; /* file numbers only */
+
+    /* ── Desk objects ── */
+    --manila: #fed7aa;
+    --highlight: rgba(255, 213, 79, .55);
+    --tape: rgba(202,207,210,.85);
+
     /* ── Spacing scale ── */
     --s-1: 4px;
     --s-2: 8px;

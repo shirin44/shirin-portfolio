@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import FileHeader from "../FileHeader.jsx";
 import { projects } from "../../data/projects.js";
 
 const CAT_ACCENT = {
@@ -15,7 +16,7 @@ const CATEGORIES = projects.map(g => g.category);
 function ProjectCard({ p, showCat }) {
   const acc = accent(p._cat);
   return (
-    <div className="projCard" style={{ borderLeftColor: acc.border }}>
+    <div className="projCard">
       <div className="projCardTop">
         {showCat && (
           <span className="projCardCat" style={{ color: acc.color, background: acc.bg }}>
@@ -60,14 +61,7 @@ export default function ProjectsSection() {
     <div className="card projWrap">
 
       {/* ── Header ── */}
-      <div className="commHeader" style={{ marginBottom: 10 }}>
-        <div className="commHeaderTitle" style={{ fontSize: "clamp(22px, 3.2vw, 38px)" }}>
-          Projects
-        </div>
-        <div className="commHeaderDesc">
-          {total} projects &nbsp;·&nbsp; {CATEGORIES.length} categories
-        </div>
-      </div>
+      <FileHeader no={4} title="Projects" meta={`${total} projects · ${CATEGORIES.length} categories`} note="things I built for fun & for real" />
 
       {/* ── Filters + search ── */}
       <div className="projFilterRow">

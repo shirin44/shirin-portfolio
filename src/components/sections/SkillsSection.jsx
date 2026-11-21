@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import FileHeader from "../FileHeader.jsx";
 import { skills } from "../../data/skills.js";
 
 const GROUP_ACCENT = {
@@ -40,14 +41,7 @@ export default function SkillsSection() {
     <div className="card skillsWrap">
 
       {/* ── Header ── */}
-      <div className="commHeader" style={{ marginBottom: 10 }}>
-        <div className="commHeaderTitle" style={{ fontSize: "clamp(22px, 3.2vw, 38px)" }}>
-          Skills<br />&amp; Tools
-        </div>
-        <div className="commHeaderDesc">
-          {totalSkills} skills &nbsp;·&nbsp; {groupCount} categories
-        </div>
-      </div>
+      <FileHeader no={7} title="Skills & Tools" meta={`${totalSkills} skills · ${groupCount} categories`} note="always adding more" />
 
       {/* ── Search ── */}
       <input
