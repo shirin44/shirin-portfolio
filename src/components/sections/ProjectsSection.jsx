@@ -12,14 +12,16 @@ function accent(cat) { return CAT_ACCENT[cat] ?? DEFAULT_ACCENT; }
 const ALL_ITEMS = projects.flatMap(g => g.items.map(p => ({ ...p, _cat: g.category })));
 const CATEGORIES = projects.map(g => g.category);
 
-function ProjectCard({ p }) {
+function ProjectCard({ p, showCat }) {
   const acc = accent(p._cat);
   return (
     <div className="projCard" style={{ borderLeftColor: acc.border }}>
       <div className="projCardTop">
-        <span className="projCardCat" style={{ color: acc.color, background: acc.bg }}>
-          {p._cat.replace(" Projects", "")}
-        </span>
+        {showCat && (
+          <span className="projCardCat" style={{ color: acc.color, background: acc.bg }}>
+            {p._cat.replace(" Projects", "")}
+          </span>
+        )}
         {p.date && <span className="projCardDate">{p.date}</span>}
       </div>
       <div className="projCardTitle">{p.title}</div>
@@ -92,9 +94,15 @@ export default function ProjectsSection() {
         />
       </div>
 
+      {(query || activeCat !== "All") && (
+        <div className="resultCount" aria-live="polite">
+          {filtered.length} of {total} projects
+        </div>
+      )}
+
       {/* ── Grid ── */}
       <div className="projCardGrid">
-        {filtered.map((p, i) => <ProjectCard key={i} p={p} />)}
+        {filtered.map((p, i) => <ProjectCard key={i} p={p} showCat={activeCat === "All"} />)}
       </div>
 
       {!filtered.length && (

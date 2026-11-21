@@ -22,8 +22,18 @@ const TABS = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState(null);
-  const [animationClass, setAnimationClass] = useState("");
+  // Deep links: /#publications opens that tab directly
+  const [activeTab, setActiveTab] = useState(() => {
+    const h = window.location.hash.slice(1).toLowerCase();
+    return TABS.find(t => t.name.toLowerCase() === h)?.name ?? null;
+  });
+  // A deep-linked tab starts pulled out of the folder, same as after a click
+  const [animationClass, setAnimationClass] = useState(() => (window.location.hash.length > 1 ? "animate-pull-over" : ""));
+
+  useEffect(() => {
+    const next = activeTab ? `#${activeTab.toLowerCase()}` : " ";
+    if (window.location.hash !== next) history.replaceState(null, "", next === " " ? window.location.pathname : next);
+  }, [activeTab]);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const scrollContainerRef = useRef(null);
@@ -155,36 +165,64 @@ export default function App() {
               {/* Desktop: simple name + hint (folder front shows photo/stamp) */}
               <div className="folderLandingName">Shirin Shujaa</div>
               <div className="folderLandingRole">AI Research Engineer · NLP &amp; Responsible AI</div>
+              <div className="landingCtas folderLandingCtas">
+                <button type="button" className="btn" onClick={() => handleTabClick("Contact")}>
+                  Get in touch
+                </button>
+                <a className="btn btn--ghost" href="/shirin-portfolio/ShirinShujaa_CV.pdf" download>
+                  Download CV
+                </a>
+              </div>
               <div className="folderLandingHint">
                 <span className="folderLandingArrow">↑</span>
-                Pick a tab to explore
+                Or pick a tab to explore
               </div>
 
-              {/* Mobile only: profile card + section shortcuts */}
+              {/* Mobile only: profile hero — the tab bar above is the only
+                  nav, so this doesn't repeat it as a second grid of buttons */}
               <div className="mobileLanding">
                 <img src="images/MENEW.jpg" className="mobileLandingPhoto" alt="Shirin" />
-                <div className="mobileLandingStats">
-                  <div className="mobileLandingStat"><span>7</span>Papers</div>
-                  <div className="mobileLandingStat"><span>6</span>Roles</div>
-                  <div className="mobileLandingStat"><span>1st</span>Hackathon</div>
-                  <div className="mobileLandingStat"><span>Top 3%</span>Kaggle</div>
+                <div className="mobileLandingName">Shirin Shujaa</div>
+                <div className="mobileLandingRole">AI Research Engineer · NLP &amp; Responsible AI</div>
+                <p className="mobileLandingBio">
+                  Researching AI alignment, LLM evaluation, and generative AI for low-resource languages.
+                </p>
+
+                <div className="landingCtas">
+                  <button type="button" className="btn" onClick={() => handleTabClick("Contact")}>
+                    Get in touch
+                  </button>
+                  <a className="btn btn--ghost" href="/shirin-portfolio/ShirinShujaa_CV.pdf" download>
+                    Download CV
+                  </a>
                 </div>
-                <div className="mobileLandingGrid">
-                  {TABS.map(({ name, color }) => (
-                    <button
-                      key={name}
-                      className="mobileLandingCard"
-                      style={{ background: color }}
-                      onClick={() => handleTabClick(name)}
-                    >
-                      {name}
-                    </button>
-                  ))}
+
+                <div className="mobileLandingStatsRow">
+                  <div className="mobileLandingStatItem"><span>7</span>Papers</div>
+                  <div className="mobileLandingDivider" />
+                  <div className="mobileLandingStatItem"><span>6</span>Roles</div>
+                  <div className="mobileLandingDivider" />
+                  <div className="mobileLandingStatItem"><span>1st</span>Hackathon</div>
+                  <div className="mobileLandingDivider" />
+                  <div className="mobileLandingStatItem"><span>Top 3%</span>Kaggle</div>
+                </div>
+
+                <div className="mobileLandingTags">
+                  <span className="tag">AI Alignment</span>
+                  <span className="tag">Bias &amp; Fairness</span>
+                  <span className="tag">Low-Resource NLP</span>
+                </div>
+
+                <div className="mobileLandingHint">
+                  <span className="mobileLandingArrow">↑</span>
+                  Or tap a section above
                 </div>
               </div>
             </div>
           )}
         </div>
+
+        <FolderLinks dock />
 
         <div className="folderFront">
           <div className="stickerAbs">Shirin's Stuff</div>

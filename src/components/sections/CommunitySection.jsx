@@ -3,23 +3,12 @@ import { communitySpotlights, communityData } from "../../data/community.js";
 
 const PLACEHOLDER = "images/achievements/placeholder.png";
 
-const COMM_BADGE = {
-  Membership: { bg: "rgba(77,2,19,.10)",     border: "rgba(77,2,19,.25)",     color: "#4D0213", text: "Mbr" },
-  Service:    { bg: "rgba(118,64,78,.12)",   border: "rgba(118,64,78,.30)",   color: "#76404E", text: "Svc" },
-  Community:  { bg: "rgba(180,185,190,.28)", border: "rgba(160,165,170,.55)", color: "#555",    text: "Hub" },
-  Funding:    { bg: "rgba(185,147,102,.22)", border: "rgba(185,147,102,.50)", color: "#76404E", text: "Fund" },
-};
-
-function commBadge(item) {
-  const tags = item.tags || [];
-  for (const t of tags) if (COMM_BADGE[t]) return COMM_BADGE[t];
-  return COMM_BADGE.Community;
-}
-
 function CommPhoto({ src, alt }) {
   return (
     <img
       className="achCompImg"
+      loading="lazy"
+      decoding="async"
       src={src}
       alt={alt}
       onError={e => { e.currentTarget.src = PLACEHOLDER; }}
@@ -50,12 +39,8 @@ function CommCard({ item }) {
 }
 
 function CommRow({ item }) {
-  const b = commBadge(item);
   return (
     <div className="achRow">
-      <div className="achBadge" style={{ background: b.bg, borderColor: b.border, color: b.color }}>
-        {b.text}
-      </div>
       <div className="achRowBody">
         <div className="achRowTop">
           <div className="achRowTitle">{item.title}</div>
@@ -82,10 +67,6 @@ export default function CommunitySection() {
       {/* ── Header ── */}
       <div className="commHeader">
         <div className="commHeaderTitle">Community<br />Engagement</div>
-        <div className="commHeaderDesc">
-          Through volunteering, outreach, and public speaking, I represent
-          RMIT with empathy, professionalism, and student-centered impact.
-        </div>
       </div>
 
       {/* ── 2-column spotlight grid ── */}

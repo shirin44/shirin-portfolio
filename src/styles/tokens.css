@@ -1,23 +1,47 @@
 :root{
+    /* ── Palette ── */
     --silver: #CACFD2;
     --grullo: #AA9E8E;
     --camel:  #B99366;
     --tuscan: #76404E;
     --scarlet:#4D0213;
-  
+
     --bg: var(--silver);
     --paper: #FFFFFB;
     --ink: #161616;
-  
-    --accent: var(--tuscan);
-    --accent2: var(--camel);
+
+    /* ── Accent: one brand colour for links, CTAs and highlights ── */
+    --accent: var(--scarlet);
+    --accent-hover: #6a0b22;
+    --accent-soft: rgba(77,2,19,.08);
+    --accent2: var(--tuscan);
+    --accent-tint: rgba(185,147,102,.18);          /* camel wash for tags */
+    --accent-tint-border: rgba(185,147,102,.32);
     --deep: var(--scarlet);
-  
+
+    /* ── Text: every level stays ≥ 4.5:1 on paper ── */
+    --text-1: rgba(0,0,0,.88);   /* headings, titles */
+    --text-2: rgba(0,0,0,.70);   /* body copy */
+    --text-3: rgba(0,0,0,.58);   /* meta, labels, dates */
+
+    /* ── Lines ── */
+    --border: rgba(0,0,0,.10);
+    --divider: rgba(0,0,0,.07);
+
     --shadow: 0 18px 50px rgba(0,0,0,.18);
     --shadow2: 0 10px 24px rgba(0,0,0,.14);
-    --border: rgba(0,0,0,.12);
-  
-    --r-lg: 18px;
-    --r-md: 14px;
-    --r-sm: 10px;
+
+    /* ── Radii (nested: inner = outer − padding) ── */
+    --r-lg: 16px;
+    --r-md: 10px;
+    --r-sm: 6px;
+    --r-pill: 999px;
+
+    /* ── Spacing scale ── */
+    --s-1: 4px;
+    --s-2: 8px;
+    --s-3: 12px;
+    --s-4: 16px;
+    --s-5: 24px;
+    --s-6: 32px;
   }

@@ -1,13 +1,17 @@
 // src/components/FolderLinks.jsx
 import { profile } from "../data/profile.js";
-import { FaGithub, FaRegFilePdf } from "react-icons/fa";
+import { FiGithub, FiMail, FiFileText, FiLinkedin } from "react-icons/fi";
 import { SiOrcid } from "react-icons/si";
-import { HiOutlineMail } from "react-icons/hi";
 
-export default function FolderLinks() {
+export default function FolderLinks({ dock = false }) {
   return (
-    <div className="folderLinks" aria-label="Quick links">
-      {/* LinkedIn uses your custom image */}
+    <div className={dock ? "folderLinks folderLinks--dock" : "folderLinks"} aria-label="Quick links">
+      {dock ? (
+        <a className="folderLink" href={profile.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn">
+          <FiLinkedin />
+        </a>
+      ) : (
+      /* LinkedIn uses your custom sticker image on the folder */
       <a
         className="folderLink folderLink--linkedin"
         href={profile.links.linkedin}
@@ -24,6 +28,7 @@ export default function FolderLinks() {
           className="folderLinkImg folderLinkImg--linkedin"
         />
       </a>
+      )}
 
       {/* Others use icons */}
       <a
@@ -34,7 +39,7 @@ export default function FolderLinks() {
         aria-label="GitHub"
         title="GitHub"
       >
-        <FaGithub />
+        <FiGithub />
       </a>
 
       <a
@@ -54,7 +59,7 @@ export default function FolderLinks() {
         aria-label="Email"
         title="Email"
       >
-        <HiOutlineMail />
+        <FiMail />
       </a>
 
       <a
@@ -64,7 +69,7 @@ export default function FolderLinks() {
         aria-label="Download CV"
         title="Download CV"
       >
-        <FaRegFilePdf />
+        <FiFileText />
         <span>CV</span>
       </a>
     </div>

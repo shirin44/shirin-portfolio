@@ -2,10 +2,10 @@
 import { profile } from "../../data/profile.js";
 
 const METRICS = [
-  { num: "7",      label: "Papers & Chapters", sub: "ACM/IEEE · Springer · Elsevier", fill: 90 },
-  { num: "4",      label: "Research Venues",   sub: "Top-tier conferences",        fill: 75 },
-  { num: "Top 3%", label: "Kaggle Ranking",    sub: "House Price Prediction",      fill: 97 },
-  { num: "1st",    label: "AI Hackathon",      sub: "CoverGo 2025",                fill: 100 },
+  { num: "7",      label: "Papers & Chapters", sub: "ACM/IEEE · Springer · Elsevier" },
+  { num: "4",      label: "Research Venues",   sub: "Top-tier conferences" },
+  { num: "Top 3%", label: "Kaggle Ranking",    sub: "House Price Prediction" },
+  { num: "1st",    label: "AI Hackathon",      sub: "CoverGo 2025" },
 ];
 
 const GLANCE = [
@@ -38,10 +38,7 @@ export default function AboutSection() {
           <div className="ab__name">{profile.name}</div>
           <div className="ab__role">{profile.headline}</div>
         </div>
-        <span className="chip chip--accent">NLP · Responsible AI</span>
       </div>
-
-      <hr className="ab__rule" />
 
       {/* ── Bio row: photo | statement | quick glance ── */}
       <div className="ab__bioRow">
@@ -51,13 +48,12 @@ export default function AboutSection() {
             src="images/MENEW.jpg"
             alt={profile.name}
             className="ab__photo"
+            decoding="async"
             onError={(e) => { e.currentTarget.style.display = "none"; }}
           />
-          <div className="ab__photoCaption">Research · AI Engineering</div>
         </div>
 
         <div className="ab__statement">
-          <div className="ab__sectionLabel">Personal Statement</div>
           <p className="ab__bio">
             <strong>AI Research Engineer</strong> and second-year{" "}
             <strong>Master of AI</strong> student at RMIT University,
@@ -87,19 +83,13 @@ export default function AboutSection() {
 
       </div>
 
-      <hr className="ab__rule" />
-
       {/* ── Metrics ── */}
-      <div className="ab__sectionLabel">Metrics</div>
       <div className="ab__metrics">
         {METRICS.map((m) => (
           <div className="ab__metric" key={m.label}>
             <div className="ab__metricNum">{m.num}</div>
             <div className="ab__metricLabel">{m.label}</div>
             <div className="ab__metricSub">{m.sub}</div>
-            <div className="ab__metricBar">
-              <div className="ab__metricFill" style={{ width: `${m.fill}%` }} />
-            </div>
           </div>
         ))}
       </div>

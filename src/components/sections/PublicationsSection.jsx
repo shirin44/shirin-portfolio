@@ -37,6 +37,8 @@ function PubItem({ p }) {
         <img
           src={p.image || "images/pubs/placeholder.png"}
           alt={p.title}
+          loading="lazy"
+          decoding="async"
           onError={e => { e.currentTarget.src = "images/pubs/placeholder.png"; }}
         />
       </div>
@@ -104,6 +106,12 @@ export default function PublicationsSection() {
         onChange={e => setQuery(e.target.value)}
         placeholder="Search title, venue, author…"
       />
+
+      {query && (
+        <div className="resultCount" aria-live="polite">
+          {filtered.length} of {publicationsData.length} papers
+        </div>
+      )}
 
       {/* ── List ── */}
       <div className="pubList">

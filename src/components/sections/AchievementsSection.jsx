@@ -14,6 +14,8 @@ function CompPhoto({ src, alt }) {
   return (
     <img
       className="achCompImg"
+      loading="lazy"
+      decoding="async"
       src={src}
       alt={alt}
       onError={e => { e.currentTarget.src = PLACEHOLDER; }}
@@ -51,7 +53,7 @@ function AwardCard({ item }) {
   return (
     <div className="achCompCard">
       {imgs.length === 1 ? (
-        <img className="achCompImg achCompImgFull" src={imgs[0]} alt={item.name}
+        <img className="achCompImg achCompImgFull" src={imgs[0]} alt={item.name} loading="lazy" decoding="async"
           onError={e => { e.currentTarget.src = PLACEHOLDER; }} />
       ) : (
         <div className="achCompImages achCompImages--3">

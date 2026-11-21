@@ -20,6 +20,7 @@ function ExperienceCard({ item }) {
           <img
             src={item.logo || "images/logos/placeholder.png"}
             alt={item.org}
+            loading="lazy"
             onError={e => { e.currentTarget.src = "images/logos/placeholder.png"; }}
           />
         </div>
@@ -76,6 +77,12 @@ export default function ExperienceSection() {
         placeholder="Search role, org, skill…"
         style={{ marginBottom: 14 }}
       />
+
+      {query && (
+        <div className="resultCount" aria-live="polite">
+          {filtered.length} of {experience.length} roles
+        </div>
+      )}
 
       {/* ── Cards ── */}
       <div className="expCardList">

@@ -83,15 +83,6 @@ export default function SkillsSection() {
         <div className="achEmpty">No skills match — try a different keyword.</div>
       )}
 
-      {/* ── Banner ── */}
-      {!query && (
-        <div className="achBanner">
-          <div className="achBannerArrow">→</div>
-          <div className="achBannerText">
-            Always learning and improving — currently deepening expertise in AI fairness, information retrieval, and full-stack development.
-          </div>
-        </div>
-      )}
 
     </div>
   );

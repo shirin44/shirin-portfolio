@@ -15,6 +15,29 @@ body{
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Headlines wrap in balanced lines; body text avoids orphans */
+.commHeaderTitle, .ab__name, .pubItemTitle, .projCardTitle, .achCompResult,
+.certTitle, .folderLandingName, .mobileLandingName, .expCardOrg, .achRowTitle{
+  text-wrap: balance;
+}
+p, .achCompStory, .projCardDesc, .expCardBullets li, .achRowDesc, .commHeaderDesc{
+  text-wrap: pretty;
+}
+
+/* Figures that sit in columns or change while filtering use fixed-width digits */
+.pubYear, .projCardDate, .expCardPeriod, .certDate, .achRowMeta, .ab__metricNum,
+.ab__eduOrg, .mobileLandingStatItem span, .commHeaderDesc, .resultCount{
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
 .screen{
   position: relative;
   height: 100vh;
@@ -76,7 +99,6 @@ body{
   line-height: 1;
   padding-bottom: 6px;
 
-  text-shadow: 0 1px 0 rgba(255,255,255,.65), 0 2px 10px rgba(0,0,0,.25);
   box-shadow: 0 10px 18px rgba(0,0,0,.18);
   transition: transform 140ms ease, filter 140ms ease;
 }
@@ -217,7 +239,7 @@ body{
   text-shadow: 0 1px 0 rgba(255,255,255,.35);
 }
 .bottomLine a{
-  color: #0b3ea8;
+  color: var(--accent);
   text-decoration: none;
   font-weight: 800;
 }
@@ -271,16 +293,16 @@ body{
 @media (max-width: 900px){ .split{ grid-template-columns: 1fr; } }
 
 /* Typography helpers */
-.lead{ margin: 0; font-size: 13px; line-height: 1.6; color: rgba(0,0,0,.65); }
+.lead{ margin: 0; font-size: 13px; line-height: 1.6; color: var(--text-2); }
 .miniLabel{
   flex: 0 0 62px;
   font-size: 10.5px;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: .06em;
-  color: rgba(0,0,0,.42);
+  color: var(--text-3);
 }
-.miniValue{ font-size: 12.5px; font-weight: 700; color: rgba(0,0,0,.80); }
+.miniValue{ font-size: 12.5px; font-weight: 700; color: var(--text-1); }
 
 .bullets{ margin: 6px 0 0; padding-left: 18px; }
 .bullets li{ margin: 6px 0; line-height: 1.45; }
@@ -296,7 +318,7 @@ body{
   border: 1px solid rgba(185,147,102,.30);
 }
 .tagRow{ display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
-.muted{ color: rgba(0,0,0,.62); }
+.muted{ color: var(--text-2); }
 
 /* =========================
    Publications — redesign
@@ -368,22 +390,21 @@ body{
 .pubYear{
   font-size: 11px;
   font-weight: 700;
-  color: rgba(0,0,0,.40);
+  color: var(--text-3);
 }
 
 .pubItemTitle{
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 950;
   line-height: 1.3;
   letter-spacing: -0.01em;
-  color: rgba(0,0,0,.88);
+  color: var(--text-1);
 }
 .pubItemAuthors{
   margin-top: 4px;
   font-size: 11.5px;
-  color: rgba(0,0,0,.56);
+  color: var(--text-3);
   font-weight: 650;
-  font-style: italic;
   line-height: 1.4;
 }
 .pubVenuePill{
@@ -395,7 +416,7 @@ body{
   border: 1px solid rgba(185,147,102,.30);
   font-size: 11px;
   font-weight: 750;
-  color: rgba(0,0,0,.72);
+  color: var(--text-2);
 }
 
 .pubItemFoot{
@@ -407,15 +428,15 @@ body{
 .pubDOILink{
   font-size: 10.5px;
   font-weight: 750;
-  color: rgba(0,0,0,.40);
+  color: var(--text-3);
   text-decoration: none;
 }
-.pubDOILink:hover{ color: rgba(0,0,0,.75); text-decoration: underline; }
+.pubDOILink:hover{ color: var(--text-2); text-decoration: underline; }
 .pubReadLink{
   margin-left: auto;
   font-size: 12px;
   font-weight: 950;
-  color: #4D0213;
+  color: var(--accent);
   text-decoration: none;
 }
 .pubReadLink:hover{ text-decoration: underline; }
@@ -445,7 +466,7 @@ body{
 .commHeaderDesc{
   font-size: 13px;
   font-weight: 700;
-  color: rgba(0,0,0,.65);
+  color: var(--text-2);
   line-height: 1.65;
   text-align: right;
   max-width: 280px;
@@ -485,9 +506,8 @@ body{
 .achSpotlightTagline{
   margin: 6px 0 0;
   font-size: 12.5px;
-  color: rgba(0,0,0,.55);
+  color: var(--text-3);
   line-height: 1.6;
-  font-style: italic;
 }
 
 /* 3-column competition grid */
@@ -506,8 +526,8 @@ body{
   flex-direction: column;
   background: rgba(255,255,255,.68);
   border: 1px solid rgba(0,0,0,.09);
-  border-radius: 12px;
-  padding: 12px;
+  border-radius: var(--r-lg);   /* 16 − 10 padding = 6px image radius */
+  padding: 10px;
 }
 
 /* Photo collage */
@@ -527,9 +547,8 @@ body{
   width: 100%;
   aspect-ratio: 4/3;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   border: 1px solid rgba(0,0,0,.10);
-  box-shadow: 0 4px 12px rgba(0,0,0,.10);
   background: rgba(185,147,102,.12);
 }
 
@@ -539,7 +558,7 @@ body{
   font-weight: 950;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: rgba(0,0,0,.55);
+  color: var(--text-3);
 }
 
 /* Placement result */
@@ -557,7 +576,7 @@ body{
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: rgba(0,0,0,.38);
+  color: var(--text-3);
 }
 
 /* Narrative paragraph */
@@ -565,7 +584,7 @@ body{
   margin: 8px 0 0;
   font-size: 12px;
   line-height: 1.65;
-  color: rgba(0,0,0,.62);
+  color: var(--text-2);
   flex: 1;
 }
 
@@ -617,7 +636,7 @@ body{
 .achPageSub{
   margin-top: 3px;
   font-size: 12px;
-  color: rgba(0,0,0,.50);
+  color: var(--text-3);
   font-weight: 700;
 }
 .achSearch{
@@ -632,17 +651,17 @@ body{
 }
 .achSearch:focus{ border-color: rgba(0,0,0,.30); width: 190px; }
 
+/* Sections are separated by space, not lines */
 .achRule{
   border: none;
-  border-top: 1px solid rgba(0,0,0,.08);
-  margin: 12px 0;
+  margin: var(--s-5) 0 var(--s-1);
 }
 .achSectionLabel{
   font-size: 10px;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: .12em;
-  color: rgba(0,0,0,.35);
+  color: var(--text-3);
   margin-bottom: 8px;
 }
 
@@ -681,10 +700,10 @@ body{
   gap: 10px;
 }
 .achRowTitle{ font-size: 13.5px; font-weight: 900; line-height: 1.2; }
-.achRowMeta{ font-size: 11px; color: rgba(0,0,0,.45); font-weight: 700; white-space: nowrap; flex: 0 0 auto; }
-.achRowDesc{ margin-top: 3px; font-size: 12px; color: rgba(0,0,0,.60); line-height: 1.4; }
+.achRowMeta{ font-size: 11px; color: var(--text-3); font-weight: 700; white-space: nowrap; flex: 0 0 auto; }
+.achRowDesc{ margin-top: 3px; font-size: 12px; color: var(--text-2); line-height: 1.4; }
 .achRowFoot{ display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
-.achRowLink{ margin-left: auto; font-size: 11.5px; font-weight: 850; color: #0b3ea8; text-decoration: none; }
+.achRowLink{ margin-left: auto; font-size: 11.5px; font-weight: 850; color: var(--accent); text-decoration: none; }
 .achRowLink:hover{ text-decoration: underline; }
 .achTag{ font-size: 10.5px; padding: 4px 8px; }
 
@@ -721,14 +740,14 @@ body{
   gap: 3px;
 }
 .certTop{ display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
-.certIssuer{ font-size: 9.5px; font-weight: 900; text-transform: uppercase; letter-spacing: .07em; color: rgba(0,0,0,.38); }
-.certDate{ font-size: 10.5px; font-weight: 700; color: rgba(0,0,0,.40); }
-.certTitle{ font-size: 12.5px; font-weight: 900; line-height: 1.3; color: rgba(0,0,0,.85); }
+.certIssuer{ font-size: 9.5px; font-weight: 900; text-transform: uppercase; letter-spacing: .07em; color: var(--text-3); }
+.certDate{ font-size: 10.5px; font-weight: 700; color: var(--text-3); }
+.certTitle{ font-size: 12.5px; font-weight: 900; line-height: 1.3; color: var(--text-1); }
 .certFoot{ display: flex; align-items: center; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
-.certLink{ font-size: 11px; font-weight: 850; color: #0b3ea8; text-decoration: none; margin-left: auto; }
+.certLink{ font-size: 11px; font-weight: 850; color: var(--accent); text-decoration: none; margin-left: auto; }
 .certLink:hover{ text-decoration: underline; }
 
-.achEmpty{ font-size: 12px; color: rgba(0,0,0,.45); padding: 8px 0; }
+.achEmpty{ font-size: 12px; color: var(--text-3); padding: 8px 0; }
 
 /* =========================
    About — dense dashboard
@@ -756,7 +775,7 @@ body{
 .ab__role{
   margin-top: 5px;
   font-size: 13px;
-  color: rgba(0,0,0,.48);
+  color: var(--text-3);
   font-weight: 700;
   letter-spacing: .01em;
 }
@@ -764,8 +783,7 @@ body{
 /* Dividers */
 .ab__rule{
   border: none;
-  border-top: 1px solid rgba(0,0,0,.08);
-  margin: 14px 0;
+  margin: var(--s-5) 0 0;
 }
 
 /* Tiny uppercase section labels */
@@ -774,12 +792,13 @@ body{
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: .12em;
-  color: rgba(0,0,0,.35);
+  color: var(--text-3);
   margin-bottom: 9px;
 }
 
 /* ── Bio row ── */
 .ab__bioRow{
+  margin-top: var(--s-4);
   display: grid;
   grid-template-columns: 106px 1fr .8fr;
   gap: 16px;
@@ -804,7 +823,7 @@ body{
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: rgba(0,0,0,.35);
+  color: var(--text-3);
   text-align: center;
 }
 
@@ -814,10 +833,10 @@ body{
   font-family: Georgia, 'Palatino Linotype', Palatino, serif;
   font-size: 13.5px;
   line-height: 1.7;
-  color: rgba(0,0,0,.70);
+  color: var(--text-2);
   margin: 0;
 }
-.ab__bio strong{ font-weight: bold; color: rgba(0,0,0,.86); }
+.ab__bio strong{ font-weight: bold; color: var(--text-1); }
 
 /* Quick glance */
 .ab__quickGlance{ display: flex; flex-direction: column; }
@@ -835,12 +854,12 @@ body{
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: .06em;
-  color: rgba(0,0,0,.38);
+  color: var(--text-3);
 }
 .ab__glanceVal{
   font-size: 12.5px;
   font-weight: 700;
-  color: rgba(0,0,0,.74);
+  color: var(--text-2);
   line-height: 1.4;
 }
 
@@ -849,7 +868,7 @@ body{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin-top: 8px;
+  margin-top: var(--s-5);
 }
 .ab__metric{
   background: rgba(255,255,255,.70);
@@ -858,36 +877,24 @@ body{
   padding: 12px 13px 10px;
 }
 .ab__metricNum{
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 950;
   letter-spacing: -0.03em;
-  color: #76404E;
+  color: var(--accent);
   line-height: 1;
 }
 .ab__metricLabel{
   margin-top: 4px;
   font-size: 12.5px;
   font-weight: 800;
-  color: rgba(0,0,0,.78);
+  color: var(--text-1);
   line-height: 1.2;
 }
 .ab__metricSub{
   margin-top: 3px;
   font-size: 10.5px;
-  color: rgba(0,0,0,.40);
+  color: var(--text-3);
   font-weight: 700;
-}
-.ab__metricBar{
-  margin-top: 10px;
-  height: 4px;
-  background: rgba(0,0,0,.08);
-  border-radius: 999px;
-  overflow: hidden;
-}
-.ab__metricFill{
-  height: 100%;
-  background: linear-gradient(90deg, #76404E, #B99366);
-  border-radius: 999px;
 }
 
 /* ── Bottom grid ── */
@@ -927,7 +934,7 @@ body{
 .ab__eduOrg{
   margin-top: 3px;
   font-size: 12px;
-  color: rgba(0,0,0,.48);
+  color: var(--text-3);
   font-weight: 700;
 }
 .ab__scholarship{
@@ -945,7 +952,7 @@ body{
   padding: 6px 0;
   font-size: 12.5px;
   line-height: 1.5;
-  color: rgba(0,0,0,.68);
+  color: var(--text-2);
   border-bottom: 1px solid rgba(0,0,0,.05);
 }
 .ab__focusRow:last-child{ border-bottom: none; }
@@ -985,7 +992,7 @@ body{
 .ab__recogLabel{
   font-size: 12px;
   font-weight: 700;
-  color: rgba(0,0,0,.68);
+  color: var(--text-2);
   line-height: 1.3;
 }
 
@@ -1049,15 +1056,14 @@ body{
   margin-top: 2px;
   font-weight: 800;
   font-size: 12.5px;
-  color: rgba(0,0,0,.70);
+  color: var(--text-2);
 }
 
 .expCardMeta{
   margin-top: 4px;
   font-size: 11.5px;
   font-weight: 700;
-  font-style: italic;
-  color: rgba(0,0,0,.50);
+  color: var(--text-3);
   line-height: 1.35;
 }
 
@@ -1076,7 +1082,7 @@ body{
   font-size: 12.5px;
   margin: 0;
   padding-left: 18px;
-  color: rgba(0,0,0,.72);
+  color: var(--text-2);
   line-height: 1.55;
 }
 .expCardBullets li + li{ margin-top: 3px; }
@@ -1103,7 +1109,7 @@ body{
   background: rgba(255,255,255,.75);
   font-size: 12px;
   font-weight: 800;
-  color: rgba(0,0,0,.65);
+  color: var(--text-2);
   cursor: pointer;
   transition: background 110ms, color 110ms, border-color 110ms;
 }
@@ -1156,7 +1162,7 @@ body{
 
 .projCardDate{
   font-size: 11px;
-  color: rgba(0,0,0,.45);
+  color: var(--text-3);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -1170,7 +1176,7 @@ body{
 
 .projCardDesc{
   font-size: 12.5px;
-  color: rgba(0,0,0,.68);
+  color: var(--text-2);
   line-height: 1.45;
   flex: 1;
 }
@@ -1191,7 +1197,7 @@ body{
   border: 1px solid rgba(0,0,0,.10);
   font-size: 11px;
   font-weight: 700;
-  color: rgba(0,0,0,.65);
+  color: var(--text-2);
 }
 
 
@@ -1238,14 +1244,8 @@ body{
   border: 1px solid rgba(0,0,0,.10);
   font-size: 12px;
   font-weight: 700;
-  color: rgba(0,0,0,.78);
-  box-shadow: 0 1px 4px rgba(0,0,0,.06);
-  transition: transform 110ms ease, box-shadow 110ms ease;
+  color: var(--text-1);
   cursor: default;
-}
-.skillChip:hover{
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.11);
 }
 
 .skillChipIcon{
@@ -1419,7 +1419,9 @@ body{
 .contactBoxIconWrap{
   width: 38px;
   height: 38px;
-  border-radius: 10px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1427,16 +1429,16 @@ body{
 }
 
 .contactBoxText{ flex: 1; min-width: 0; }
-.contactLabel{ font-size: 10px; font-weight: 950; text-transform: uppercase; letter-spacing: .08em; color: rgba(0,0,0,.42); }
-.contactValue{ font-size: 12.5px; font-weight: 700; color: rgba(0,0,0,.80); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.contactLabel{ font-size: 10px; font-weight: 950; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); }
+.contactValue{ font-size: 12.5px; font-weight: 700; color: var(--text-1); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .contactBoxArrow{
   font-size: 14px;
-  color: rgba(0,0,0,.25);
+  color: var(--text-3);
   flex: 0 0 auto;
   transition: transform 140ms, color 140ms;
 }
-.contactBox:hover .contactBoxArrow{ transform: translateX(3px); color: rgba(0,0,0,.55); }
+.contactBox:hover .contactBoxArrow{ transform: translateX(3px); color: var(--text-3); }
 
 /* ── Form card ── */
 .contactFormWrap{ display: flex; flex-direction: column; }
@@ -1457,7 +1459,7 @@ body{
   font-weight: 950;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: rgba(0,0,0,.48);
+  color: var(--text-3);
 }
 
 .fieldInput{
@@ -1474,8 +1476,8 @@ body{
   box-sizing: border-box;
 }
 .fieldInput:focus{
-  border-color: #222E45;
-  box-shadow: 0 0 0 3px rgba(34,46,69,.08);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 .fieldInput--area{ resize: vertical; min-height: 110px; }
 
@@ -1484,24 +1486,65 @@ body{
 .btn{
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 22px;
-  border-radius: 999px;
-  background: #222E45;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 800;
-  border: none;
+  border: 1.5px solid var(--accent);
   cursor: pointer;
   text-decoration: none;
   transition: background 140ms, transform 120ms, box-shadow 140ms;
-  letter-spacing: .03em;
-  box-shadow: 0 4px 14px rgba(34,46,69,.28);
+  letter-spacing: .02em;
+  box-shadow: 0 6px 18px rgba(77,2,19,.28);
 }
-.btn:hover{ background: #2e3f5c; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(34,46,69,.32); }
-.btn:disabled{ opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn:hover{ background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(77,2,19,.34); }
+.btn:active{ transform: translateY(0) scale(.98); box-shadow: 0 2px 8px rgba(77,2,19,.25); }
+.btn:focus-visible{ outline: 3px solid var(--accent-tint-border); outline-offset: 2px; }
+.btn:disabled{ opacity: .7; cursor: progress; transform: none; }
+.btn--block{ width: 100%; }
+
+/* Secondary action — outlined, sits beside the primary CTA */
+.btn--ghost{ background: transparent; color: var(--accent); box-shadow: none; }
+.btn--ghost:hover{ background: var(--accent-soft); box-shadow: none; }
+
+.btnSpinner{
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.35);
+  border-top-color: #fff;
+  animation: spin 700ms linear infinite;
+}
+@keyframes spin{ to{ transform: rotate(360deg); } }
+
+@keyframes fadeUp{
+  from{ opacity: 0; transform: translateY(6px); }
+  to{ opacity: 1; transform: none; }
+}
+
+.landingCtas{
+  display: flex;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Live “3 of 7” count while searching */
+.resultCount{
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-3);
+  margin: -4px 0 10px;
+  animation: fadeUp 160ms ease both;
+}
 
 .formSuccess{
+  animation: fadeUp 220ms ease both;
   padding: 11px 15px;
   border-radius: 10px;
   background: rgba(16,185,129,.10);
@@ -1539,13 +1582,13 @@ body{
   font-size: clamp(24px, 4vw, 40px);
   font-weight: 950;
   letter-spacing: -0.03em;
-  color: #222E45;
+  color: var(--accent);
 }
 
 .folderLandingRole{
   font-size: clamp(12px, 1.4vw, 15px);
   font-weight: 700;
-  color: rgba(0,0,0,.50);
+  color: var(--text-3);
   letter-spacing: 0.01em;
 }
 
@@ -1555,7 +1598,7 @@ body{
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: .12em;
-  color: rgba(0,0,0,.30);
+  color: var(--text-3);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1622,14 +1665,18 @@ body{
 
   .tab2{
     flex: unset;
+    min-width: 0;
     height: clamp(38px, 4.5vw, 46px);
     min-height: 44px;
     border-radius: 8px;
     border: 1.5px solid rgba(0,0,0,.15);
     border-bottom: 1.5px solid rgba(0,0,0,.15);
-    font-size: clamp(9px, 1.6vw, 12px);
+    font-size: clamp(8px, 2.6vw, 12px);
     padding: 0 2px;
-    letter-spacing: .02em;
+    letter-spacing: .01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     box-shadow: none;
   }
 
@@ -1667,7 +1714,7 @@ body{
     border: 1px solid rgba(0,0,0,.10);
     box-shadow: 0 4px 20px rgba(0,0,0,.14);
   }
-  .folderLink{ width: 36px; height: 36px; border-radius: 10px; }
+  .folderLink{ width: 36px; height: 36px; border-radius: 12px; } /* dock 20 − padding 8 */
   .folderLink svg{ width: 17px; height: 17px; }
 
   /* ── Content grids → 1-col ── */
@@ -1700,87 +1747,232 @@ body{
   .folderLandingRole{ display: none; }
   .folderLandingHint{ display: none; }
 
-  /* ── Mobile landing card ── */
-  .folderLanding{ padding: 0; align-items: stretch; min-height: unset; height: auto; justify-content: flex-start; }
+  /* ── Mobile landing: a flat profile hero that flows with the page
+     (no floating card in empty space). The fixed tab bar above is the
+     only navigation surface — this does not repeat it as a grid of
+     buttons. ── */
+  .folderLanding{ padding: 8vh 24px 40px; align-items: center; min-height: unset; height: auto; justify-content: flex-start; }
 
   .mobileLanding{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    padding: 8px 4px 8px;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    text-align: center;
   }
 
   .mobileLandingPhoto{
-    width: 88px;
-    height: 88px;
+    width: 112px;
+    height: 112px;
     border-radius: 50%;
     object-fit: cover;
     object-position: top center;
     border: 3px solid rgba(255,255,255,.9);
-    box-shadow: 0 8px 28px rgba(0,0,0,.18);
+    box-shadow: 0 10px 30px rgba(0,0,0,.20);
+    margin-bottom: 16px;
   }
 
-  .mobileLandingStats{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 7px;
+  .mobileLandingName{
+    font-size: 23px;
+    font-weight: 950;
+    letter-spacing: -0.02em;
+    color: #171717;
+  }
+
+  .mobileLandingRole{
+    margin-top: 5px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-3);
+  }
+
+  .mobileLandingBio{
+    margin: 14px 0 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-2);
+    max-width: 300px;
+  }
+
+  .mobileLandingStatsRow{
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
     width: 100%;
+    margin-top: 26px;
   }
 
-  .mobileLandingStat{
+  .mobileLandingStatItem{
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
-    padding: 9px 4px;
-    background: rgba(255,255,255,.82);
-    border-radius: 10px;
-    border: 1px solid rgba(0,0,0,.08);
-    box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    font-size: 9px;
+    gap: 3px;
+    font-size: 9.5px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: .05em;
-    color: rgba(0,0,0,.45);
+    color: var(--text-3);
   }
-  .mobileLandingStat span{
+  .mobileLandingStatItem span{
     display: block;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 950;
-    color: #222E45;
+    color: var(--accent);
     letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 2px;
+    line-height: 1.2;
   }
 
-  .mobileLandingGrid{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    width: 100%;
+  .mobileLandingDivider{
+    width: 1px;
+    background: rgba(0,0,0,.12);
+    margin: 2px 4px;
   }
 
-  .mobileLandingCard{
-    height: 52px;
-    border-radius: 12px;
-    border: none;
-    color: #111;
-    font-size: 8.5px;
-    font-weight: 950;
+  .mobileLandingTags{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 24px;
+  }
+
+  .mobileLandingHint{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 32px;
+    font-size: 10.5px;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: .04em;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,.14);
-    text-shadow: 0 1px 0 rgba(255,255,255,.50);
-    transition: transform 150ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 150ms;
+    letter-spacing: .08em;
+    color: var(--text-3);
   }
-  .mobileLandingCard:active{
-    transform: scale(0.94);
-    box-shadow: 0 2px 6px rgba(0,0,0,.10);
+
+  .mobileLandingArrow{
+    animation: bounceUp 1.4s ease-in-out infinite;
+    display: inline-block;
   }
 
   /* Transparent doc so gradient background shows through */
   .doc{ background: transparent; }
   .bg-lined-paper{ background-color: transparent; background-image: none; }
+}
+/* Phone dock is a second copy of the quick links — desktop uses the folder-front set */
+.folderLinks--dock{ display: none; }
+
+/* =========================
+   Phone & tablet refresh — ≤ 1024px
+   Overrides the block above: one calm surface, a single
+   scrollable tab strip, flat sections, links dock.
+========================= */
+@media (max-width: 1024px){
+
+  /* One paper surface in both colour schemes (no muddy dark-mode backdrop) */
+  .screen{ background: var(--paper); animation: none; }
+  .doc{ background: var(--paper); }
+
+  /* ── Tab strip: one row, swipeable, neutral until active ── */
+  .tabsNav{
+    padding: calc(8px + env(safe-area-inset-top, 0px)) 0 8px;
+    background: rgba(255,255,251,.94);
+    border-bottom: 1px solid var(--divider);
+  }
+  .tabsRow{
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    padding: 0 16px;
+    -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
+            mask-image: linear-gradient(to right, #000 85%, transparent);
+  }
+  .tabsRow::-webkit-scrollbar{ display: none; }
+
+  .tab2{
+    flex: 0 0 auto;
+    height: 36px;
+    min-height: 36px;
+    padding: 0 14px;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--border);
+    background: transparent !important;   /* beats the inline desktop tab colour */
+    color: var(--text-2);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .03em;
+    scroll-snap-align: center;
+    overflow: visible;
+    transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  .tab2:hover{ transform: none; filter: none; }
+  .tab2--active{
+    background: var(--accent) !important;
+    border-color: var(--accent);
+    color: #fff;
+    transform: none;
+    filter: none;
+    box-shadow: none;
+  }
+
+  .doc{
+    top: calc(53px + env(safe-area-inset-top, 0px));
+    padding: 20px 16px calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* ── Sections sit flat on the page — no box inside a box ── */
+  .card, .ab{
+    border: none;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+  }
+  .commHeader{ gap: 6px; margin-bottom: 16px; }
+  .commHeaderTitle{ font-size: 28px !important; }
+
+  /* About: the landing already shows the photo */
+  .ab__photoWrap{ display: none; }
+  .ab__name{ font-size: 28px; }
+
+  /* Publications: compact thumbnail beside the text, not a full-width placeholder */
+  .pubItem{ grid-template-columns: 76px 1fr; gap: 12px; padding: 14px 0; }
+  .pubThumb2{ width: 76px; height: 100px; border-radius: var(--r-sm); box-shadow: none; }
+  .pubItem:hover{ background: none; }
+
+  /* ── Landing hero ── */
+  .folderLandingCtas{ display: none; }
+  .folderLanding{ padding: 6vh 16px 32px; }
+  .mobileLanding .landingCtas{ margin-top: 20px; width: 100%; }
+  .mobileLanding .landingCtas .btn{ flex: 1; }
+  .mobileLandingName{ font-size: 28px; color: var(--text-1); }
+  .mobileLandingRole{ font-size: 13px; color: var(--text-2); }
+  .mobileLandingBio{ color: var(--text-2); font-size: 15px; }
+  .mobileLandingStatItem{ color: var(--text-3); font-size: 10px; }
+  .mobileLandingStatItem span{ font-size: 20px; }
+  .mobileLandingHint{ color: var(--text-3); }
+
+  /* ── Quick-links dock ── */
+  .folderLinks--dock{
+    display: flex;
+    background: rgba(255,255,251,.94);
+  }
+  .folderLinks--dock .folderLink{
+    width: 44px;
+    height: 44px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    color: var(--text-1);
+  }
+  .folderLinks--dock .folderLink:hover{ transform: none; background: var(--accent-soft); }
+  .folderLinks--dock .folderLink--cv{
+    width: auto;
+    padding: 0 12px;
+    background: var(--accent);
+    color: #fff;
+  }
+  .folderLinks--dock .folderLink svg{ width: 20px; height: 20px; }
 }

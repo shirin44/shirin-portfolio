@@ -57,18 +57,23 @@ export default function ContactForm() {
 
       <div className="formActions">
         {status === "sent" ? (
-          <div className="formSuccess">Message sent! I'll get back to you soon.</div>
+          <div className="formSuccess" role="status">Message sent! I'll get back to you soon.</div>
         ) : (
           <button
-            className="btn"
+            className="btn btn--block"
             type="submit"
             disabled={status === "sending"}
+            aria-busy={status === "sending"}
           >
-            {status === "sending" ? "Sending…" : "Send message →"}
+            {status === "sending" ? (
+              <><span className="btnSpinner" aria-hidden="true" /> Sending…</>
+            ) : (
+              "Send message"
+            )}
           </button>
         )}
         {status === "error" && (
-          <div className="formError">Something went wrong — try emailing directly.</div>
+          <div className="formError" role="alert">Something went wrong — try emailing directly.</div>
         )}
       </div>
     </form>
