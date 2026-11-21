@@ -37,7 +37,7 @@ export const competitionSpotlights = [
       "images/pics/ADC1.png",
       "images/pics/ADC2.png",
     ],
-    link: "https://www.rmit.edu.vn/students/student-news-and-events/student-news/2025/neuroaicc-autistic-interview-accessibility-design-competition?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnQtkb63DBHGSJv05lq87lOT_ucDdGmDjv3csYPHt1pIHPlHAm3qvznkHPjaI_aem_SWgP9gET3pHjQEaBu0Djbw",
+    link: "https://www.rmit.edu.vn/students/student-news-and-events/student-news/2025/neuroaicc-autistic-interview-accessibility-design-competition",
     tags: ["Social Impact", "Accessibility"],
     accent: "silver",
   },

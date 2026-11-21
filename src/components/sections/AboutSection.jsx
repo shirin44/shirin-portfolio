@@ -1,5 +1,6 @@
 // src/components/sections/AboutSection.jsx
 import { profile } from "../../data/profile.js";
+import { press } from "../../data/press.js";
 
 const METRICS = [
   { num: "7",      label: "Papers & Chapters", sub: "ACM/IEEE · Springer · Elsevier" },
@@ -137,6 +138,22 @@ export default function AboutSection() {
           ))}
         </div>
 
+      </div>
+
+      {/* ── In the news: press clippings ── */}
+      <hr className="ab__rule" />
+      <div className="ab__sectionLabel">In the News</div>
+      <div className="clippings">
+        {press.map((a) => (
+          <a className="clipping" key={a.link} href={a.link} target="_blank" rel="noreferrer">
+            <div className="clipping__outlet">
+              {a.outlet}{a.date ? ` · ${a.date}` : ""}
+            </div>
+            <div className="clipping__title">{a.title}</div>
+            <p className="clipping__blurb">{a.blurb}</p>
+            <span className="clipping__read">Read article →</span>
+          </a>
+        ))}
       </div>
     </div>
   );

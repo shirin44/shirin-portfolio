@@ -253,7 +253,6 @@ export default function App() {
             <img className="stampAbs" src="images/stamp.png" alt="Stamp" draggable={false} />
           </DeskItem>
 
-          <div className="handNote coverHint" aria-hidden="true">psst… you can move things</div>
         </div>
 
       </div>

@@ -106,7 +106,7 @@ export default function PublicationsSection() {
       <FileHeader no={2} title="Publications & Research" meta={acceptedCount
         ? `${publicationsData.length} papers · ${publishedCount} published · ${acceptedCount} accepted`
         : `${publishedCount} published papers · ACM · IEEE · Springer · Elsevier`}
-        note={acceptedCount ? `${acceptedCount} more on the way!` : `all ${publishedCount} out in the world!`} />
+        note={acceptedCount ? `${acceptedCount} more on the way!` : null} />
 
       {/* ── Search ── */}
       <input
