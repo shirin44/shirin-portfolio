@@ -4,7 +4,7 @@
 export const publicationsData = [
   {
     title: "ABSP: Attention-Based Semantic Preservation for Faithful Context Compression",
-    authors: "Shirin Shujaa, Ginel Dorleon, Tran Tri Dang",
+    authors: "Shirin Shujaa, Ginel Dorleon, Tri Dang Tran",
     venue: "ACM/IEEE Joint Conference on Digital Libraries (JCDL 2026)",
     year: "2026",
     pages: "1–8",
